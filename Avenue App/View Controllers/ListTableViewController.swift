@@ -55,7 +55,7 @@ class ListTableViewController: UITableViewController {
         let cells: [UITableViewCell] = [todayCell,popularCell,discoverCell,blogCell]
 //
         // Configure the cell...
-        cells[indexPath.row].selectionStyle = UITableViewCellSelectionStyle.none
+        cells[indexPath.row].selectionStyle = UITableViewCell.SelectionStyle.none
         return cells[indexPath.row]
     }
     

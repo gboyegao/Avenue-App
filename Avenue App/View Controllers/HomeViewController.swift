@@ -57,7 +57,7 @@ class HomeViewController: UITableViewController {
         let cells: [UITableViewCell] = [todayCell,popularCell,discoverCell,blogCell,mealPlannerCell]
         //
         // Configure the cell...
-        cells[indexPath.row].selectionStyle = UITableViewCellSelectionStyle.none
+        cells[indexPath.row].selectionStyle = UITableViewCell.SelectionStyle.none
         return cells[indexPath.row]
     }
     
