@@ -12,6 +12,8 @@ What things you need to install the software and how to install them
 ```
 Give examples
 ```
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+
 
 ### Installing
 
