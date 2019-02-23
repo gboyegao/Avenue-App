@@ -21,11 +21,9 @@ Give examples
 
 ### Installing
 
+```
 Download Project 
 and Run in XCode
-
-```
-Give the example
 ```
 
 ## Architecture
@@ -37,10 +35,8 @@ Seperated Storyboards for easy
 
 ### Unit Tests
 
-Simple Tests to validate the models,and controllers
-
 ```
-Give an example
+Simple Tests to validate the models,and controllers
 ```
 
 ## Built With
