@@ -11,16 +11,44 @@ import Firebase
 import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
+    
+    let defaults = UserDefaults.standard
     var window: UIWindow?
 
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
         FirebaseApp.configure()
+        
+        let db = Firestore.firestore()
+        let settings = db.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        db.settings = settings
+        GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance()?.delegate = self
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let storyboard = UIStoryboard(name: "Main",bundle:nil)
+        var firstVC = storyboard.instantiateViewController(withIdentifier: "Welcome")
+        let loggedIn = defaults.bool(forKey: UDKey.LoggedIn.rawValue)
+        if loggedIn {
+            //segue
+            firstVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBar")
+        }
+        
+        
+        window?.rootViewController = firstVC
+        window?.makeKeyAndVisible()
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as?String,annotation: [:])
+
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -43,6 +71,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    
+    
+    
+    
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let err = error {
+            print("Failed attempt to login to Google")
+            return
+        }
+        print("Successfully Logged In")
+        
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,accessToken: authentication.accessToken)
+        
+        Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
+            if let error = error {
+                print("Failed to create a FirebaseUser")
+                return
+            }
+            print("User is signed in")
+            self.defaults.set(true, forKey: UDKey.LoggedIn.rawValue)
+            
+            
+            if self.window?.rootViewController is LogInViewController {
+                //do something if it's an instance of that class
+                self.window?.rootViewController?.performSegue(withIdentifier: "loginToHome", sender: nil)
+                
+            }
+            else{
+                self.window?.rootViewController?.performSegue(withIdentifier: "alreadyLoggedIn", sender: nil)
+            }
+            
+            
+            
+        }
+        
     }
 
 

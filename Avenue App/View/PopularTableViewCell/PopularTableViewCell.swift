@@ -24,6 +24,11 @@ class PopularTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func populateCell(){
+        
+    }
+    
+    
 }
 
 extension PopularTableViewCell:UICollectionViewDataSource,UICollectionViewDelegate{

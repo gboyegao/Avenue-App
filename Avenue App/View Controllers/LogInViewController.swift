@@ -8,8 +8,15 @@
 
 import UIKit
 import Firebase
+import SafariServices
+
+
+
+
 
 class LogInViewController: UIViewController {
+    
+    let defaults = UserDefaults.standard
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -22,7 +29,7 @@ class LogInViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name:UIResponder.keyboardWillHideNotification , object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 
-
+        
         // Do any additional setup after loading the view.
     }
     //Remove Nototification Observer
@@ -53,10 +60,16 @@ class LogInViewController: UIViewController {
                 self.errorLabel.text = "\(error!.localizedDescription)"
                 return
             }
+            self.defaults.set(true, forKey: UDKey.LoggedIn.rawValue)
             self.performSegue(withIdentifier: "loginToHome", sender: self)
             
         })
     }
+    
+    @IBAction func termsAndConditions(_ sender: Any) {
+        showSafariVC(for: "https://google.com")
+    }
+    
     
     @objc func keyboardWillChange(notification: Notification){
         print("Keyboard will show:\(notification.name.rawValue)")
@@ -76,5 +89,15 @@ class LogInViewController: UIViewController {
             print("Change")
         }
     }
+    
+    func showSafariVC(for url:String){
+        guard let url = URL(string: url) else {return}
+        
+        let safariVC  = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
+        
+        
+    }
 
+    
 }

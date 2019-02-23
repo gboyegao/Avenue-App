@@ -25,7 +25,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RN5-Jc-ntQ">
                                 <rect key="frame" x="0.0" y="0.0" width="340" height="230"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="breakfast-bg" translatesAutoresizingMaskIntoConstraints="NO" id="H6b-Zl-IBr">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="breakfast-bg" translatesAutoresizingMaskIntoConstraints="NO" id="H6b-Zl-IBr">
                                         <rect key="frame" x="0.0" y="0.0" width="340" height="230"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Breakfast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gep-xb-ddp">
@@ -156,6 +156,10 @@
                 <constraint firstAttribute="bottom" secondItem="l86-AF-fau" secondAttribute="bottom" id="rhG-ze-Bak"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="recipeImageView" destination="H6b-Zl-IBr" id="dec-sy-ZWc"/>
+                <outlet property="title" destination="i0t-A1-5MM" id="bq2-Wb-PH1"/>
+            </connections>
             <point key="canvasLocation" x="52.799999999999997" y="48.575712143928037"/>
         </collectionViewCell>
     </objects>

@@ -8,30 +8,37 @@
 
 import UIKit
 import Firebase
+import SafariServices
 
-class RegisterViewController: UIViewController {
 
+
+
+class RegisterViewController: UIViewController{
+    let defaults = UserDefaults.standard
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmTextField: UITextField!
+    @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     var signupModel:SignupModel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let ref = Database.database().reference()
-        ref.child("someid/name").setValue("Mike")
-
-
+        
+        //TODO- Move to Function
         //Listening for keyboard events
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
+    
+
+        
     }
     
-    //Remove Nototification Observer
+    //Remove Notification Observer
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -48,10 +55,11 @@ class RegisterViewController: UIViewController {
         guard let email = emailTextField.text, let password = passwordTextField.text, let confirmPassword = confirmTextField.text else{return}
         
         if password != confirmPassword {
-            
             errorLabel.text = "Password doesnt match "
             
         }
+            
+        //TODO Validate USername
         
         else{
             
@@ -103,10 +111,20 @@ class RegisterViewController: UIViewController {
                 
                 guard let user = authResult?.user else { return }
                 let uid = user.uid
+                //Add User to Database change to firestore
                 let ref = Database.database().reference()
                 
                 ref.child("Users").child(uid).setValue(email)
                 
+                ref.child("Users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    //Use Snapshot
+                    snapshot.value
+                }
+                    
+                    
+                )
+                
+                self.defaults.set(true, forKey: UDKey.LoggedIn.rawValue)
                 self.performSegue(withIdentifier: "registerToHome", sender: self)
 
                 
@@ -132,6 +150,14 @@ class RegisterViewController: UIViewController {
         loginButtonPressed("")
     }
     
+    
+    
+    @IBAction func termsAndConditions(_ sender: Any) {
+        showSafariVC(for: "https://google.com")
+    }
+    
+    
+    
     @objc func keyboardWillChange(notification: Notification){
         print("Keyboard will show:\(notification.name.rawValue)")
         
@@ -150,6 +176,14 @@ class RegisterViewController: UIViewController {
             print("Change")
         }
     }
+    
+    func showSafariVC(for url:String){
+        guard let url = URL(string: url) else {return}
+        
+        let safariVC  = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
+    }
+
     
     
     
