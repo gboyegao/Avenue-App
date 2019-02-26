@@ -15,8 +15,8 @@ Cocoapods
 ```
 Give examples
 ```
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
-![Alt Text](https://www.dropbox.com/s/sj59et8atz75ug0/avenueapp.gif?dl=0)
+![Alt Text](https://s3-eu-west-1.amazonaws.com/ringierdm/2017/september/eks/avenueapp480.gif)
+
 
 
 ### Installing
