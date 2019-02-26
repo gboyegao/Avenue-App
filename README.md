@@ -24,7 +24,7 @@ and Run in XCode
 ## Architecture
 
 
-![Alt Text](![Alt Text](https://s3-eu-west-1.amazonaws.com/ringierdm/2017/september/eks/avenuegifa.gif))
+![Alt Text](https://s3-eu-west-1.amazonaws.com/ringierdm/2017/september/eks/avenue-archi.jpg)
 
 MVVM was initially adopted for this project although but after a couple of iterations i decided to stick with apple's default MVC with some few differences such as ViewControllers using seperate data sources 
 
