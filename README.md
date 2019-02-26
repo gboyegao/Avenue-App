@@ -23,8 +23,12 @@ and Run in XCode
 
 ## Architecture
 
-MVC was adopted for this project although the ViewControllers used a seperate data sources and decoupled some underlying functionality
-Seperated Storyboards for easy
+
+![Alt Text](![Alt Text](https://s3-eu-west-1.amazonaws.com/ringierdm/2017/september/eks/avenuegifa.gif))
+
+MVVM was initially adopted for this project although but after a couple of iterations i decided to stick with apple's default MVC with some few differences such as ViewControllers using seperate data sources 
+
+
 
 
 
