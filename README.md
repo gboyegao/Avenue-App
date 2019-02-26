@@ -1,6 +1,5 @@
 # Avenue-App
-Iphone and Ipad App
-Discover your favorite recipes
+Iphone and Ipad App to discover your favorite recipes by your favorite curators and bloggers
 
 ## Getting Started
 
