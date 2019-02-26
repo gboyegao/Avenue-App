@@ -16,7 +16,7 @@ Cocoapods
 Give examples
 ```
 ![Alt Text](https://s3-eu-west-1.amazonaws.com/ringierdm/2017/september/eks/avenueapp480.gif)
-![Alt Text](https://s3-eu-west-1.amazonaws.com/ringierdm/2017/september/eks/avenueapp480.gif)
+![Alt Text](https://s3-eu-west-1.amazonaws.com/ringierdm/2017/september/eks/avenuegifa.gif)
 
 
 ### Installing
