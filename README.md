@@ -11,11 +11,7 @@ To Run this application ensure you have Xcode properly setup on your local machi
 XCode 10.0 >
 Cocoapods
 
-
-```
-Give examples
-```
-
+### Screens
 ![Alt Text](https://s3-eu-west-1.amazonaws.com/ringierdm/2017/september/eks/avenuegifa.gif)
 ![Alt Text](https://s3-eu-west-1.amazonaws.com/ringierdm/2017/september/eks/avenuegifb.gif)
 
