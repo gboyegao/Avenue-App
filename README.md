@@ -51,9 +51,3 @@ Simple Tests to validate the models,and controllers
 
 ## TODO
  Implement Search Functionality Using Algolia and Firestore Cloud Functions
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
