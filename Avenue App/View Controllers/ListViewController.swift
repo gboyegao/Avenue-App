@@ -9,22 +9,62 @@
 import UIKit
 
 class ListViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    @IBOutlet weak var listTableView: UITableView!
+    
+    var itemList:[ShoppingItem]? = [ShoppingItem]()
+    var coordinator:MainCoordinator?
+    
+    var currentDataSource:(UITableViewDelegate & UITableViewDataSource)?{
+        didSet{
+            listTableView.delegate = self
+            listTableView.dataSource = currentDataSource
+            listTableView.reloadData()
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+            coordinator = MainCoordinator(navigationController: navigationController!)
+//            navigationItem.rightBarButtonItem = editButtonItem
+        }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        itemList = ShoppingListController.loadItems()
+        guard let list = itemList else {
+            print("NO ITEMS ")
+            return
+            
+        } //Can use special UI for case where list is empty
+        currentDataSource = ListDataSource(lists:list)
+        
+        
     }
-    */
+    
+    
+    @IBAction func editButtonTapped(_ sender: Any) {
+        let tableViewIsEditing = listTableView.isEditing
+        
+        listTableView.setEditing(!tableViewIsEditing, animated: true)
+    }
+    
+    
+    
+}
 
+
+extension ListViewController:UITableViewDelegate{
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        coordinator?.viewShoppingIngredients()
+    }
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    
 }

@@ -9,37 +9,66 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Bold.otf">
+            <string>Montserrat-Bold</string>
+        </array>
+        <array key="Montserrat-Regular.otf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="popularSectionCell" id="gTV-IL-0wX" customClass="PopularCollectionViewCell" customModule="Avenue_App" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="104" height="142"/>
+            <rect key="frame" x="0.0" y="0.0" width="142" height="142"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="104" height="142"/>
+                <rect key="frame" x="0.0" y="0.0" width="142" height="142"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Acs-L5-sUT">
-                        <rect key="frame" x="0.0" y="0.0" width="104" height="142"/>
+                        <rect key="frame" x="0.0" y="0.0" width="142" height="142"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="65t-b1-Hfa">
-                                <rect key="frame" x="0.0" y="0.0" width="104" height="142"/>
+                                <rect key="frame" x="0.0" y="0.0" width="142" height="142"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popular-tile" translatesAutoresizingMaskIntoConstraints="NO" id="hKh-td-pSG">
-                                        <rect key="frame" x="0.0" y="0.0" width="104" height="142"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popular-tile" translatesAutoresizingMaskIntoConstraints="NO" id="hKh-td-pSG">
+                                        <rect key="frame" x="0.0" y="0.0" width="142" height="142"/>
                                     </imageView>
+                                    <visualEffectView opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="33F-6v-ymf">
+                                        <rect key="frame" x="0.0" y="0.0" width="142" height="142"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="eYT-54-n4v">
+                                            <rect key="frame" x="0.0" y="0.0" width="142" height="142"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <blurEffect style="dark"/>
+                                    </visualEffectView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UU6-WV-qtj">
-                                        <rect key="frame" x="4" y="121" width="33" height="12"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <rect key="frame" x="4" y="122" width="32.5" height="11"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="9"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Braised rabbit with mustard-tarragon sauce and bread" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2D-ND-chg">
-                                        <rect key="frame" x="4" y="77" width="93.5" height="39"/>
+                                        <rect key="frame" x="4" y="78" width="128" height="39"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="39" id="Uhm-xM-5On"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart-icon" translatesAutoresizingMaskIntoConstraints="NO" id="kW5-15-edl">
+                                        <rect key="frame" x="4" y="8" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="z22-L0-Gcc"/>
+                                            <constraint firstAttribute="width" constant="20" id="z9s-vT-GXJ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMC-AI-h9q">
+                                        <rect key="frame" x="28" y="10.5" width="9" height="15"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -48,12 +77,20 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="hKh-td-pSG" secondAttribute="trailing" id="0BQ-XM-2E8"/>
                                     <constraint firstItem="UU6-WV-qtj" firstAttribute="leading" secondItem="65t-b1-Hfa" secondAttribute="leading" constant="4" id="2bh-1q-Gum"/>
+                                    <constraint firstAttribute="trailing" secondItem="33F-6v-ymf" secondAttribute="trailing" id="2hs-4X-wHu"/>
+                                    <constraint firstItem="cMC-AI-h9q" firstAttribute="leading" secondItem="kW5-15-edl" secondAttribute="trailing" constant="4" id="4DU-pf-hlB"/>
                                     <constraint firstItem="U2D-ND-chg" firstAttribute="leading" secondItem="65t-b1-Hfa" secondAttribute="leading" constant="4" id="70b-TM-pqk"/>
                                     <constraint firstItem="hKh-td-pSG" firstAttribute="top" secondItem="65t-b1-Hfa" secondAttribute="top" id="GHa-nC-yEf"/>
+                                    <constraint firstItem="cMC-AI-h9q" firstAttribute="centerY" secondItem="kW5-15-edl" secondAttribute="centerY" id="LMU-KB-gjp"/>
+                                    <constraint firstItem="33F-6v-ymf" firstAttribute="top" secondItem="65t-b1-Hfa" secondAttribute="top" id="LmQ-XD-Jie"/>
+                                    <constraint firstItem="33F-6v-ymf" firstAttribute="leading" secondItem="65t-b1-Hfa" secondAttribute="leading" id="RGg-IW-ZXx"/>
                                     <constraint firstAttribute="bottom" secondItem="UU6-WV-qtj" secondAttribute="bottom" constant="9" id="YPx-eg-a9q"/>
                                     <constraint firstItem="UU6-WV-qtj" firstAttribute="top" secondItem="U2D-ND-chg" secondAttribute="bottom" constant="5" id="cmE-Aq-jGc"/>
                                     <constraint firstAttribute="bottom" secondItem="hKh-td-pSG" secondAttribute="bottom" id="e9N-GS-lpC"/>
+                                    <constraint firstAttribute="bottom" secondItem="33F-6v-ymf" secondAttribute="bottom" id="frC-ca-Sss"/>
                                     <constraint firstItem="hKh-td-pSG" firstAttribute="leading" secondItem="65t-b1-Hfa" secondAttribute="leading" id="l6t-25-V3g"/>
+                                    <constraint firstItem="kW5-15-edl" firstAttribute="leading" secondItem="U2D-ND-chg" secondAttribute="leading" id="sbu-di-wah"/>
+                                    <constraint firstItem="kW5-15-edl" firstAttribute="top" secondItem="65t-b1-Hfa" secondAttribute="topMargin" id="tl0-bL-A2R"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -94,10 +131,18 @@
                 <constraint firstItem="Acs-L5-sUT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="qXj-WI-q6F"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <point key="canvasLocation" x="137.59999999999999" y="153.82308845577214"/>
+            <size key="customSize" width="100" height="142"/>
+            <connections>
+                <outlet property="recipeImageView" destination="hKh-td-pSG" id="cZY-mu-lwq"/>
+                <outlet property="recipeLikesLabel" destination="cMC-AI-h9q" id="Rv1-q3-2ii"/>
+                <outlet property="recipeNameLabel" destination="U2D-ND-chg" id="dl0-5a-Qiw"/>
+                <outlet property="recipeTimeLabel" destination="UU6-WV-qtj" id="CYN-rj-i4L"/>
+            </connections>
+            <point key="canvasLocation" x="134.40000000000001" y="153.82308845577214"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="heart-icon" width="22" height="19"/>
         <image name="popular-tile" width="103" height="141"/>
     </resources>
 </document>

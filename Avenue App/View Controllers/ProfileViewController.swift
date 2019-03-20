@@ -12,6 +12,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var profileTableView: UITableView!
     @IBOutlet weak var profileSegmentedControl: SegmentedControl!
+    @IBOutlet weak var profileImageView: CircularImageView!
     
     let favorites = Favorite.loadFavorites()
     let followings = Following.loadFollowings()
@@ -33,8 +34,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+//        profileImageView.layer.cornerRadius = profileImageView.constraints.heigh / 2        // Do any additional setup after loading the view.
      profileSegmentedControl.addTarget(self, action: #selector(segmentChanged(_:)), for: .valueChanged)
         setDataSource(type: .favorites)
 
@@ -53,8 +53,6 @@ class ProfileViewController: UIViewController {
             self.currentDataSource = FavoritesDataSource(favorites: favorites)
         case .followings:
             self.currentDataSource = FollowingsDataSource(followings: followings)
-        default:
-            break
         }
     }
 

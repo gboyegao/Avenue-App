@@ -12,5 +12,16 @@ import Foundation
 protocol CollectionViewDelegate:AnyObject {
     //MAKE GENERIC
     var trending:[Trending]{get}
-    func todayCell(_ atIndex:Int)
+    var popular:[Popular]{get}
+    var discover:[Discover]{get}
+    
+    func cellClicked(_ atIndex:Any)
+}
+
+
+protocol RecipeExpandable {
+    var recipeName:String{get}
+    var recipeImage:String{get}
+    //IMAGE URL
+    //UUID
 }

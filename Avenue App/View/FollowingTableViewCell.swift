@@ -10,7 +10,7 @@ import UIKit
 
 class FollowingTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var curatorImageView: RoundedImage!
+    @IBOutlet weak var curatorImageView: CircularImageView!
     @IBOutlet weak var curatorNameLabel: UILabel!
     
     override func awakeFromNib() {

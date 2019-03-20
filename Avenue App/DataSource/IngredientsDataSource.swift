@@ -37,7 +37,8 @@ extension IngredientsDataSource: UITableViewDataSource,UITableViewDelegate {
     func cell(for ingredient: Ingredient,tableView: UITableView,indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell()
-        cell.textLabel?.text = ingredient.name
+        cell.textLabel?.text = ingredient.quantity + "\t" + ingredient.name
+        cell.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9607843137, blue: 0.9882352941, alpha: 1)
         return cell
     }
 }

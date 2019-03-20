@@ -11,6 +11,7 @@ import UIKit
 class TodayPlannerCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var trendingLabel: UILabel!
     @IBOutlet weak var recipeImageView: UIImageView!
     
     override func awakeFromNib() {

@@ -10,7 +10,11 @@ import Foundation
 import UIKit
 
 @IBDesignable
-class RoundedImage: UIImageView{
+class CircularImageView: UIImageView{
+    
+    
+    
+    
     
     @IBInspectable var circleWidth: CGFloat = 0.0{
         didSet{
@@ -31,6 +35,7 @@ class RoundedImage: UIImageView{
     }
     
     
+    
 
     
     @IBInspectable var borderColor: UIColor = UIColor.clear {
@@ -44,7 +49,9 @@ class RoundedImage: UIImageView{
     
     override func prepareForInterfaceBuilder() {
         clipsToBounds = true
+        layer.cornerRadius = bounds.height/2
         super.prepareForInterfaceBuilder()
     }
+    
     
 }

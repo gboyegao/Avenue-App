@@ -12,18 +12,36 @@ import Firebase
 
 class HomeViewController: UITableViewController,CollectionViewDelegate{
     
-    func todayCell(_ atIndex: Int) {
-        print(atIndex)
-        performSegue(withIdentifier: "segueToRecipeDetail", sender: atIndex)
-    }
-    
     var docRef:DocumentReference!
-    var todayPlanner = TodayPlannerTableViewCell()
+    
     
     var trending:[Trending] = Trending.loadTrendingData()
+    var popular: [Popular] = Popular.loadPopularData()
+    var discover: [Discover] = Discover.loadDiscoverData()
     
+    var coordinator:MainCoordinator?
+    
+    func cellClicked(_ atIndex: Any) {
+        print(atIndex)
+        switch atIndex {
+            case let atIndex as Trending:
+                coordinator?.viewRecipe(recipe: atIndex)
+            case let atIndex as Popular:
+                coordinator?.viewRecipe(recipe: atIndex)
+            case let atIndex as Discover:
+                coordinator?.viewCurator()
+        default:
+            print("Type not supported")
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+          navigationController?.setNavigationBarHidden(false, animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        coordinator = MainCoordinator(navigationController: navigationController!)
         
 //        docRef = Firestore.firestore().document("trending/recipes")
 //        docRef.getDocument(completion: {
@@ -44,14 +62,12 @@ class HomeViewController: UITableViewController,CollectionViewDelegate{
 //        })
         
         
-        
-        
      
         tableView.register(UINib(nibName: "TodayPlannerTableViewCell", bundle: nil), forCellReuseIdentifier: "todayPlannerTableViewCell")
         tableView.register(UINib(nibName: "PopularTableViewCell", bundle: nil), forCellReuseIdentifier: "popularTableViewCell")
         tableView.register(UINib(nibName: "DiscoverTableViewCell", bundle: nil), forCellReuseIdentifier: "discoverTableViewCell")
         tableView.register(UINib(nibName: "BlogTableViewCell", bundle: nil), forCellReuseIdentifier: "blogTableViewCell")
-        tableView.register(UINib(nibName: "MealPlannerTableViewCell", bundle: nil), forCellReuseIdentifier: "mealPlannerTableViewCell")
+        
     }
     
     // MARK: - Table view data source
@@ -68,7 +84,7 @@ class HomeViewController: UITableViewController,CollectionViewDelegate{
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return 4
     }
     
     
@@ -78,11 +94,12 @@ class HomeViewController: UITableViewController,CollectionViewDelegate{
             todayCell.delegate = self
         
         let popularCell = tableView.dequeueReusableCell(withIdentifier: "popularTableViewCell") as!  PopularTableViewCell
+            popularCell.delegate = self
         
         let discoverCell = tableView.dequeueReusableCell(withIdentifier: "discoverTableViewCell") as!  DiscoverTableViewCell
+            discoverCell.delegate = self
         let blogCell = tableView.dequeueReusableCell(withIdentifier: "blogTableViewCell") as!  BlogTableViewCell
-        let mealPlannerCell = tableView.dequeueReusableCell(withIdentifier: "mealPlannerTableViewCell") as!  MealPlannerTableViewCell
-        let cells: [UITableViewCell] = [todayCell,popularCell,discoverCell,blogCell,mealPlannerCell]
+        let cells: [UITableViewCell] = [todayCell,popularCell,discoverCell,blogCell]
         //
         // Configure the cell...
         cells[indexPath.row].selectionStyle = UITableViewCell.SelectionStyle.none
@@ -91,16 +108,5 @@ class HomeViewController: UITableViewController,CollectionViewDelegate{
     
     @IBAction func unwindToHome(segue:UIStoryboardSegue) {
         
-    }
-}
-
-//Prepare for segue
-extension HomeViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueToRecipeDetail", let destination = segue.destination as? RecipeDetailViewController{
-                let index = sender as! Int
-                let singleRecipe = trending[index]
-                destination.recipeTitle = singleRecipe.recipeName
-        }
     }
 }

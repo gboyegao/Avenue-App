@@ -33,9 +33,9 @@ extension DirectionsDataSource: UITableViewDataSource,UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return cell(for: step(at: indexPath),tableView:tableView,indexPath: indexPath)
     }
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 168.0
-    }
+//    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 319
+//    }
     
     func cell(for step: Step,tableView: UITableView,indexPath: IndexPath) -> UITableViewCell {
         

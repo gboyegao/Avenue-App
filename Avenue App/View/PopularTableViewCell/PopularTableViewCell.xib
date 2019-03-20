@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Bold.otf">
+            <string>Montserrat-Bold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -20,22 +25,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JhE-oZ-FBu">
-                        <rect key="frame" x="17" y="0.0" width="104" height="36"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                        <rect key="frame" x="20" y="10" width="123.5" height="37"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="30"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="PuR-gO-dag">
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="PuR-gO-dag">
                         <rect key="frame" x="0.0" y="46.5" width="320" height="166"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="166" id="S7Y-Lq-Uo7"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="m8s-1N-gDN">
-                            <size key="itemSize" width="104" height="142"/>
+                            <size key="itemSize" width="142" height="142"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="17" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <connections>
                             <outlet property="dataSource" destination="-1" id="40l-cM-D0t"/>
@@ -44,8 +49,8 @@
                     </collectionView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="JhE-oZ-FBu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="17" id="B1z-dq-xvh"/>
-                    <constraint firstItem="JhE-oZ-FBu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hue-Iv-N9A"/>
+                    <constraint firstItem="JhE-oZ-FBu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="B1z-dq-xvh"/>
+                    <constraint firstItem="JhE-oZ-FBu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="hue-Iv-N9A"/>
                     <constraint firstAttribute="bottom" secondItem="PuR-gO-dag" secondAttribute="bottom" id="jKS-I7-2QX"/>
                     <constraint firstAttribute="trailing" secondItem="PuR-gO-dag" secondAttribute="trailing" id="lA9-Nh-Fid"/>
                     <constraint firstItem="PuR-gO-dag" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="qbh-tE-SB9"/>

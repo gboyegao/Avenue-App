@@ -9,6 +9,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Cardo-Bold.ttf">
+            <string>Cardo-Bold</string>
+        </array>
+        <array key="Montserrat-SemiBold.otf">
+            <string>Montserrat-SemiBold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -28,16 +36,23 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="breakfast-bg" translatesAutoresizingMaskIntoConstraints="NO" id="H6b-Zl-IBr">
                                         <rect key="frame" x="0.0" y="0.0" width="340" height="230"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Breakfast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gep-xb-ddp">
-                                        <rect key="frame" x="10" y="10" width="105.5" height="31.5"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <visualEffectView opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdw-es-4uz">
+                                        <rect key="frame" x="0.0" y="0.0" width="340" height="230"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fWx-Cx-1eX">
+                                            <rect key="frame" x="0.0" y="0.0" width="340" height="230"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <blurEffect style="dark"/>
+                                    </visualEffectView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Breakfast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gep-xb-ddp">
+                                        <rect key="frame" x="10" y="15" width="112" height="36"/>
+                                        <fontDescription key="fontDescription" name="Cardo-Bold" family="Cardo" pointSize="26"/>
+                                        <color key="textColor" red="0.99042981863021851" green="0.9117090106010437" blue="0.77314072847366333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#breakfast #easyfix " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZd-YI-3UZ">
-                                        <rect key="frame" x="10" y="195" width="115" height="15"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <rect key="frame" x="10" y="197" width="105" height="13"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="10"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -96,25 +111,31 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pancakes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0t-A1-5MM">
-                                        <rect key="frame" x="10" y="158" width="107" height="32"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pancakes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0t-A1-5MM">
+                                        <rect key="frame" x="10" y="167.5" width="238" height="24.5"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="gep-xb-ddp" firstAttribute="top" secondItem="RN5-Jc-ntQ" secondAttribute="top" constant="15" id="09G-1B-5pZ"/>
                                     <constraint firstAttribute="bottom" secondItem="UZd-YI-3UZ" secondAttribute="bottom" constant="20" id="1jD-cQ-Abs"/>
                                     <constraint firstItem="H6b-Zl-IBr" firstAttribute="top" secondItem="RN5-Jc-ntQ" secondAttribute="top" id="KKN-NS-QiC"/>
+                                    <constraint firstItem="gep-xb-ddp" firstAttribute="leading" secondItem="RN5-Jc-ntQ" secondAttribute="leading" constant="10" id="M5V-1u-Nrw"/>
                                     <constraint firstAttribute="bottom" secondItem="f8K-Wv-5fh" secondAttribute="bottom" constant="20" id="O2P-7V-M0h"/>
                                     <constraint firstItem="UZd-YI-3UZ" firstAttribute="leading" secondItem="RN5-Jc-ntQ" secondAttribute="leading" constant="10" id="QBO-j1-PRu"/>
                                     <constraint firstAttribute="trailing" secondItem="H6b-Zl-IBr" secondAttribute="trailing" id="UJD-xY-jIN"/>
                                     <constraint firstItem="H6b-Zl-IBr" firstAttribute="leading" secondItem="RN5-Jc-ntQ" secondAttribute="leading" id="Vla-IM-o0D"/>
+                                    <constraint firstItem="rdw-es-4uz" firstAttribute="top" secondItem="RN5-Jc-ntQ" secondAttribute="top" id="aSu-D4-t2h"/>
+                                    <constraint firstAttribute="trailing" secondItem="rdw-es-4uz" secondAttribute="trailing" id="eOf-lv-ooI"/>
                                     <constraint firstAttribute="trailing" secondItem="f8K-Wv-5fh" secondAttribute="trailing" constant="13" id="k0f-TN-e70"/>
                                     <constraint firstAttribute="bottom" secondItem="H6b-Zl-IBr" secondAttribute="bottom" id="pnR-0J-YLx"/>
                                     <constraint firstItem="i0t-A1-5MM" firstAttribute="leading" secondItem="RN5-Jc-ntQ" secondAttribute="leading" constant="10" id="qCW-qb-7h7"/>
+                                    <constraint firstItem="rdw-es-4uz" firstAttribute="leading" secondItem="RN5-Jc-ntQ" secondAttribute="leading" id="qun-Qe-nVX"/>
                                     <constraint firstItem="UZd-YI-3UZ" firstAttribute="top" secondItem="i0t-A1-5MM" secondAttribute="bottom" constant="5" id="t1S-Hi-TQf"/>
+                                    <constraint firstAttribute="bottom" secondItem="rdw-es-4uz" secondAttribute="bottom" id="xw5-9U-K9X"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -130,6 +151,7 @@
                             <constraint firstAttribute="trailing" secondItem="RN5-Jc-ntQ" secondAttribute="trailing" id="E0R-3Y-gn9"/>
                             <constraint firstAttribute="width" constant="340" id="MHz-d0-d59"/>
                             <constraint firstItem="RN5-Jc-ntQ" firstAttribute="top" secondItem="l86-AF-fau" secondAttribute="top" id="ago-FW-hXx"/>
+                            <constraint firstItem="i0t-A1-5MM" firstAttribute="width" secondItem="l86-AF-fau" secondAttribute="width" multiplier="0.7" id="gs8-c6-62b"/>
                             <constraint firstItem="RN5-Jc-ntQ" firstAttribute="leading" secondItem="l86-AF-fau" secondAttribute="leading" id="oLQ-fp-jyf"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -159,6 +181,7 @@
             <connections>
                 <outlet property="recipeImageView" destination="H6b-Zl-IBr" id="dec-sy-ZWc"/>
                 <outlet property="title" destination="i0t-A1-5MM" id="bq2-Wb-PH1"/>
+                <outlet property="trendingLabel" destination="gep-xb-ddp" id="hxO-8c-8TB"/>
             </connections>
             <point key="canvasLocation" x="52.799999999999997" y="48.575712143928037"/>
         </collectionViewCell>

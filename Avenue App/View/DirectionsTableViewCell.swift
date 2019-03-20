@@ -28,7 +28,17 @@ class DirectionsTableViewCell: UITableViewCell {
     
     func update(with direction:Step, stepNumber:Int){
         directionLabel.text = direction.text
-        directionNumber.text = "\(stepNumber)"
+        directionNumber.text = "\(stepNumber + 1)"
+        
+        if let imageUrl = direction.imageURL {
+            ImageService.getImage(withURL: imageUrl){
+                image in
+                    self.directionImageView.image = image
+            }
+        }
+        else{
+            directionImageView.isHidden = true
+        }
     }
     
     

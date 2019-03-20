@@ -17,13 +17,26 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.96078431369999995" green="0.65098039220000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AVENUE" translatesAutoresizingMaskIntoConstraints="NO" id="dcF-Hs-8Mw">
+                                <rect key="frame" x="94" y="312" width="187.5" height="43"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97428447008132935" green="0.74105095863342285" blue="0.31461405754089355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="dcF-Hs-8Mw" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="7nd-04-xUg"/>
+                            <constraint firstItem="dcF-Hs-8Mw" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="DQW-ZE-0ym"/>
+                            <constraint firstItem="dcF-Hs-8Mw" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.5" id="qLE-qA-hVK"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AVENUE" width="257" height="43"/>
+    </resources>
 </document>

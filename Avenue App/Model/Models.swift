@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import RealmSwift
 
 
 
-struct Trending{
+
+struct Trending:RecipeExpandable{
     var recipeName:String
     var recipeImage:String
     var curatorImage:String
@@ -19,7 +21,7 @@ struct Trending{
     static func loadTrendingData() -> [Trending]{
         let trendingData = [
             Trending(recipeName: "American Cheese Burgers", recipeImage: "recipe1", curatorImage: "curatorImage1", tags: [Tag(tagName:"breakfast"),Tag(tagName:"easyfix")]),
-            Trending(recipeName: "Italian Stakes", recipeImage: "recipe2", curatorImage: "curatorImage2", tags: [Tag(tagName:"lunch"),Tag(tagName:"fastmeal")]),
+            Trending(recipeName: "Italian Steaks", recipeImage: "recipe2", curatorImage: "curatorImage2", tags: [Tag(tagName:"lunch"),Tag(tagName:"fastmeal")]),
             Trending(recipeName: "Smoothie Shakes", recipeImage: "recipe5", curatorImage: "curatorImage3", tags: [Tag(tagName:"dinner")]),
             Trending(recipeName: "American Breakfast", recipeImage: "recipe4", curatorImage: "curatorImage4", tags: [Tag(tagName:"easyfix")]),
             Trending(recipeName: "Watermelon Splash", recipeImage: "recipe3", curatorImage: "curatorImage5", tags: [Tag(tagName:"fastmeal")])
@@ -29,22 +31,20 @@ struct Trending{
     }
 }
 
-struct Popular{
+struct Popular:RecipeExpandable{
     var recipeName:String
-    var recipeImage:String
+    var recipeImage:String//URL
     var duration:String
     var curatorImage:String
     var favorites:String
     
     static func loadPopularData() -> [Popular]{
         let popularData = [
-            Popular(recipeName: "Popular Image 1", recipeImage: "Burgers", duration: "20", curatorImage: "avatar", favorites: "11"),
-            Popular(recipeName: "Popular Image 2", recipeImage: "Burgers", duration: "20", curatorImage: "avatar", favorites: "11"),
-            Popular(recipeName: "Popular Image 3", recipeImage: "Burgers", duration: "20", curatorImage: "avatar", favorites: "11"),
-            Popular(recipeName: "Popular Image 4", recipeImage: "Burgers", duration: "20", curatorImage: "avatar", favorites: "11")
+            Popular(recipeName: "Popular Image 1", recipeImage: "recipe4", duration: "10", curatorImage: "avatar", favorites: "11"),
+            Popular(recipeName: "Popular Image 2", recipeImage: "recipe2", duration: "30", curatorImage: "avatar", favorites: "11"),
+            Popular(recipeName: "Popular Image 3", recipeImage: "recipe3", duration: "60", curatorImage: "avatar", favorites: "11"),
+            Popular(recipeName: "Popular Image 4", recipeImage: "recipe1", duration: "90", curatorImage: "avatar", favorites: "11")
         ]
-        
-        
         return popularData
     }
 }

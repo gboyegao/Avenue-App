@@ -55,8 +55,9 @@ class SettingsTableViewController: UITableViewController {
         //segue to home
          self.defaults.set(false, forKey: UDKey.LoggedIn.rawValue)
          let storyboard = UIStoryboard(name: "Main",bundle:nil)
-         let firstVC = storyboard.instantiateViewController(withIdentifier: "Welcome")
+         let firstVC = storyboard.instantiateViewController(withIdentifier:"Welcome")
          UIApplication.setRootView(firstVC)
+        
         
     
     }

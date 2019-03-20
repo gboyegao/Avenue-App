@@ -9,17 +9,20 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import InstantSearch
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
     
     let defaults = UserDefaults.standard
     var window: UIWindow?
+    
 
 
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
         
         FirebaseApp.configure()
         
@@ -32,15 +35,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
+        self.defaults.set(true, forKey: UDKey.LoggedIn.rawValue)
         let storyboard = UIStoryboard(name: "Main",bundle:nil)
         var firstVC = storyboard.instantiateViewController(withIdentifier: "Welcome")
         let loggedIn = defaults.bool(forKey: UDKey.LoggedIn.rawValue)
         if loggedIn {
             //segue
             firstVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBar")
+            
         }
         
-        
+        InstantSearch.shared.configure(appID: "latency", apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db", index: "bestbuy_promo")
+        InstantSearch.shared.params.attributesToRetrieve = ["name", "salePrice"]
+        InstantSearch.shared.params.attributesToHighlight = ["name"]
+
         window?.rootViewController = firstVC
         window?.makeKeyAndVisible()
         return true
@@ -81,6 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let err = error {
             print("Failed attempt to login to Google")
+            print(err.localizedDescription)
             return
         }
         print("Successfully Logged In")
@@ -91,6 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
         Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
             if let error = error {
                 print("Failed to create a FirebaseUser")
+                print(error.localizedDescription)
                 return
             }
             print("User is signed in")

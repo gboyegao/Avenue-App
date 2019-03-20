@@ -10,6 +10,8 @@ import UIKit
 
 class DiscoverTableViewCell: UITableViewCell {
 
+    var delegate:CollectionViewDelegate?
+    
     @IBOutlet weak var discoverCollectionView: UICollectionView!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,7 +29,7 @@ class DiscoverTableViewCell: UITableViewCell {
     
 }
 
-extension DiscoverTableViewCell:UICollectionViewDelegate,UICollectionViewDataSource{
+extension DiscoverTableViewCell:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 return 3
         
@@ -40,4 +42,13 @@ return 3
     }
     
     
+}
+
+
+extension DiscoverTableViewCell:UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let  discoverRecipe = delegate?.discover[indexPath.row]
+        delegate?.cellClicked(discoverRecipe)
+
+    }
 }
