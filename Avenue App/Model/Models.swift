@@ -20,11 +20,11 @@ struct Trending:RecipeExpandable{
 
     static func loadTrendingData() -> [Trending]{
         let trendingData = [
-            Trending(recipeName: "American Cheese Burgers", recipeImage: "recipe1", curatorImage: "curatorImage1", tags: [Tag(tagName:"breakfast"),Tag(tagName:"easyfix")]),
-            Trending(recipeName: "Italian Steaks", recipeImage: "recipe2", curatorImage: "curatorImage2", tags: [Tag(tagName:"lunch"),Tag(tagName:"fastmeal")]),
-            Trending(recipeName: "Smoothie Shakes", recipeImage: "recipe5", curatorImage: "curatorImage3", tags: [Tag(tagName:"dinner")]),
-            Trending(recipeName: "American Breakfast", recipeImage: "recipe4", curatorImage: "curatorImage4", tags: [Tag(tagName:"easyfix")]),
-            Trending(recipeName: "Watermelon Splash", recipeImage: "recipe3", curatorImage: "curatorImage5", tags: [Tag(tagName:"fastmeal")])
+            Trending(recipeName: "American Cheese Burgers", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "curatorImage1", tags: [Tag(tagName:"breakfast"),Tag(tagName:"easyfix")]),
+            Trending(recipeName: "Italian Steaks", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "curatorImage2", tags: [Tag(tagName:"lunch"),Tag(tagName:"fastmeal")]),
+            Trending(recipeName: "Smoothie Shakes", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "curatorImage3", tags: [Tag(tagName:"dinner")]),
+            Trending(recipeName: "American Breakfast", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "curatorImage4", tags: [Tag(tagName:"easyfix")]),
+            Trending(recipeName: "Watermelon Splash", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "curatorImage5", tags: [Tag(tagName:"fastmeal")])
         ]
         
         return trendingData
@@ -65,24 +65,7 @@ struct Discover{
     
 }
 
-struct Favorite{
-    let recipeImage:String
-    let recipeName:String
-    let curatorName:String
-    let time:String
-    //TODO: recipeuid
-    
-    
-    static func loadFavorites() -> [Favorite]{
-        let favorites = [
-            Favorite(recipeImage: "avatar", recipeName: "Chicken Shawarma", curatorName: "Chef Fregz", time: "10"),
-            Favorite(recipeImage: "avatar", recipeName: "Rice and Peas", curatorName: "Chef Fregz", time: "10"),
-            Favorite(recipeImage: "avatar", recipeName: "Cheese and Fries", curatorName: "Chef Fregz", time: "10")
-        ]
-        
-        return favorites
-    }
-}
+
 
 
 struct Following {

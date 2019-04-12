@@ -10,6 +10,26 @@ import UIKit
 
 class CuratorViewController: UIViewController {
     var coordinator:MainCoordinator?
+    @IBOutlet weak var curatorImageView: CircularImageView!
+    @IBOutlet weak var curatorNameLabel: UILabel!
+    @IBOutlet weak var likesAndFollowingLabel: UILabel!
+    @IBOutlet weak var curatorBanner: UIImageView!
+    @IBOutlet weak var recipeTableView: UITableView!
+    
+    var curator:Curator!
+    var recipes = [CuratorRecipe]()
+    
+    
+    
+    var currentDataSource:(UITableViewDelegate & UITableViewDataSource)?{
+        didSet{
+            recipeTableView.delegate = currentDataSource
+            recipeTableView.dataSource = currentDataSource
+            recipeTableView.reloadData()
+        }
+    }
+
+    
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
@@ -22,8 +42,15 @@ class CuratorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        currentDataSource = CuratorRecipeDataSource(curatorRecipes: recipes)
         // Do any additional setup after loading the view.
+        recipeTableView.rowHeight = 100
+        
+        
+        NetworkController.getCurator(id: "9UYRGiPOy9BYkLb8olNf", completion: {
+            curator in
+             self.setUpVC(curator: curator)
+        })
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -31,14 +58,13 @@ class CuratorViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setUpVC(curator:Curator){
+        curatorNameLabel.text = curator.name
+        likesAndFollowingLabel.text = "\(curator.favoriteCount) Likes   \(curator.followingCount) Following"
+        recipes = curator.recipes
+        currentDataSource = CuratorRecipeDataSource(curatorRecipes: recipes)
     }
-    */
-
+    
+    
+    
 }

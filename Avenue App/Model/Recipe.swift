@@ -12,7 +12,7 @@ struct Recipe {
     var recipeName:String
     var recipeImage:String
     var curatorImage:String
-    var tags:[Tag]
+    var tags:[String]
     var steps:[Step]
     var ingredients:[Ingredient]
     var servings:Int
@@ -22,10 +22,10 @@ struct Recipe {
     
     static func loadRecipeData() -> [Recipe]{
             let recipeData = [
-                Recipe(recipeName: "Pancakes", recipeImage: "image1", curatorImage: "avatar", tags: [Tag(tagName:"Quick Fix")], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: 100, favoriteCount: 10),
-                Recipe(recipeName: "Pancakes", recipeImage: "image1", curatorImage: "avatar", tags: [Tag(tagName:"Quick Fix")], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: 100, favoriteCount: 10),
-                Recipe(recipeName: "Pancakes", recipeImage: "image1", curatorImage: "avatar", tags: [Tag(tagName:"Quick Fix")], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: 100, favoriteCount: 10),
-                Recipe(recipeName: "Pancakes", recipeImage: "image1", curatorImage: "avatar", tags: [Tag(tagName:"Quick Fix")], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: 100, favoriteCount: 10),
+                Recipe(recipeName: "Pancakes", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "avatar", tags: ["Quick Fix"], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: 100, favoriteCount: 10),
+                Recipe(recipeName: "Pancakes", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "avatar", tags: ["Quick Fix"], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: 100, favoriteCount: 10),
+                Recipe(recipeName: "Pancakes", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "avatar", tags: ["Quick Fix"], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: 100, favoriteCount: 10),
+                Recipe(recipeName: "Pancakes", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "avatar", tags: ["Quick Fix"], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: 100, favoriteCount: 10),
         ]
         
         return recipeData
@@ -54,15 +54,15 @@ struct Ingredient {
 
 struct Step {
     var text:String
-    var imageURL:URL?
+    var imageURL:String?
     
-    init(text:String,imageURL:URL? = nil){
+    init(text:String,imageURL:String? = nil){
         self.text = text
         self.imageURL = imageURL
     }
     
     static func loadSteps() -> [Step]{
-        let steps = [Step(text: "Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon", imageURL: URL(string: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png") ),Step(text: "Cut Fish"),Step(text: "Fry Cheese"),Step(text: "Mix Cheese with Bacon"),Step(text: "Boil Water")]
+        let steps = [Step(text: "Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon Wash Lemon", imageURL: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png"),Step(text: "Cut Fish"),Step(text: "Fry Cheese"),Step(text: "Mix Cheese with Bacon"),Step(text: "Boil Water")]
         
         return steps
     }

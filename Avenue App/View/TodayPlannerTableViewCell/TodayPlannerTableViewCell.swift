@@ -11,16 +11,21 @@ import Firebase
 
 
 class TodayPlannerTableViewCell: UITableViewCell{
+    var viewWidth:CGFloat!
     
 //    var docRef:DocumentReference!
     weak var delegate:CollectionViewDelegate?
 
     @IBOutlet weak var todayCollectionView: UICollectionView!
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         self.todayCollectionView.delegate = self
         self.todayCollectionView.dataSource = self
+        
         self.todayCollectionView.register(UINib.init(nibName: "TodayPlannerCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "todaySectionCell")
         
     }
@@ -40,6 +45,8 @@ extension TodayPlannerTableViewCell:UICollectionViewDataSource{
         
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "todaySectionCell", for: indexPath as  IndexPath) as! TodayPlannerCollectionViewCell
 //          cell.title.text = delegate?.trending[0].recipeName ?? ""
@@ -57,6 +64,7 @@ extension TodayPlannerTableViewCell:UICollectionViewDataSource{
             ImageService.getImage(withURL: imageURL){
                 image in
                 cell.recipeImageView.image = image
+                cell.curatorImageView.image = image
                 
             }
             
@@ -65,15 +73,29 @@ extension TodayPlannerTableViewCell:UICollectionViewDataSource{
         }
         return cell
     }
+    
+    
 }
 
 
-extension TodayPlannerTableViewCell:UICollectionViewDelegate{
+extension TodayPlannerTableViewCell:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let  trendingRecipe = delegate?.trending[indexPath.row]
         delegate?.cellClicked(trendingRecipe)
     }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        guard let window = window else { return CGSize() }
+//
+//        let cellWidth = window.frame.height * 0.42
+//        let cellHeight =  window.frame.height * 0.284
+//
+//
+//        return CGSize(width: cellWidth, height: cellHeight)
+//
+//    }
     
     
     

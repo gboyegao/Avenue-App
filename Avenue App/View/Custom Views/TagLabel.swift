@@ -32,13 +32,13 @@ class TagLabel:UIView{
         backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.9098039216, blue: 0.7803921569, alpha: 1)
         layer.cornerRadius = 8
         label.text = text
-        label.font = UIFont(name: "Montserrat-Bold", size: 13)
+        label.font = UIFont(name: "Montserrat-Bold", size: 10)
         label.textAlignment = .center
         addSubview(label)
         
         label.translatesAutoresizingMaskIntoConstraints = false
         translatesAutoresizingMaskIntoConstraints = false
-        heightAnchor.constraint(equalToConstant: 21).isActive = true
+        heightAnchor.constraint(equalToConstant: 18).isActive = true
         widthAnchor.constraint(equalTo: label.widthAnchor,multiplier:1.2).isActive = true
         
         label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true

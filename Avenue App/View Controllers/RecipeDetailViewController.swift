@@ -13,7 +13,7 @@ class RecipeDetailViewController: UIViewController {
     
     var coordinator:MainCoordinator?
 
-    
+    let date = Date()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var recipeTitleLabel: UILabel!
     @IBOutlet weak var recipeImageView: UIImageView!
@@ -21,7 +21,13 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var recipeTableView: UITableView!
     @IBOutlet weak var segmentedControl: SegmentedControl!
     @IBOutlet weak var addIngredients: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var tagCollectionView: UICollectionView!
+    @IBOutlet weak var curatorImageView: UIImageView!
+    @IBOutlet weak var servingsLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
+    var tags:[String] = []
     
     var docRef:DocumentReference!
     
@@ -31,8 +37,8 @@ class RecipeDetailViewController: UIViewController {
         case directions, ingredients
     }
 
-    var steps:[Step] = Step.loadSteps()
-    var ingredients:[Ingredient] = Ingredient.loadIngredients()
+    var steps:[Step] = [Step]()
+    var ingredients:[Ingredient] = [Ingredient]()
     
     
     
@@ -50,14 +56,6 @@ class RecipeDetailViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-//        recipeTableView.estimatedRowHeight = recipeTableView.rowHeight
-//        recipeTableView.rowHeight = UITableView.automaticDimension
-            }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-       // navigationController?.navigationBar.isHidden = false
-    }
 
     
     override func viewDidLoad() {
@@ -68,16 +66,12 @@ class RecipeDetailViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         
         
-        setUpVC(recipe: recipe)
-        setUpTagLabels()
+        
+        
         addIngredients.isHidden = true
         segmentedControl.addTarget(self, action: #selector(segmentChanged(_:)), for: .valueChanged)
         var docRef = Firestore.firestore().document("recipe/ZbDBusdqU3dL1iNwaGZl")
         
-        NetworkController.getRecipe{
-                recipe in
-            self.setUpVC(recipe: recipe)
-        }
         
         self.setDataSource(type:.directions)
         
@@ -85,6 +79,17 @@ class RecipeDetailViewController: UIViewController {
         recipeTableView.estimatedRowHeight = 319
         recipeTableView.rowHeight = UITableView.automaticDimension
 
+        addIngredients.alpha = 0
+        
+        tagCollectionView.delegate = self
+        tagCollectionView.dataSource = self
+        
+        setUpVC(recipe: recipe)
+        
+        NetworkController.getRecipe{
+            recipe in
+            self.setUpVC(recipe: recipe)
+        }
 
   
     }
@@ -96,18 +101,17 @@ class RecipeDetailViewController: UIViewController {
     }
     
     
-    //Abstract Class
-    func setUpTagLabels(){
-        // Map Trending Data Tags
-        // ADD Subview
-        let tagLabel = TagLabel(text: "Quick Fix")
-        recipeInfoView.addSubview(tagLabel)
+    @IBAction func favoriteButtonTapped(_ sender: Any) {
         
-        tagLabel.leadingAnchor.constraint(equalTo: recipeInfoView.leadingAnchor,constant:20).isActive = true
-        tagLabel.bottomAnchor.constraint(equalTo: recipeInfoView.bottomAnchor,constant:-20).isActive = true
+        favoriteButton.isSelected = !favoriteButton.isSelected
         
     }
     
+    
+    
+    
+    
+        
     @objc func segmentChanged(_ sender:UISegmentedControl){
         let type = SourceType(rawValue: sender.selectedSegmentIndex) ?? .directions
         self.setDataSource(type: type)
@@ -139,16 +143,39 @@ class RecipeDetailViewController: UIViewController {
     
     func setUpVC(recipe:RecipeExpandable){
         recipeTitleLabel.text = recipe.recipeName
+        guard let imageURL = URL(string: recipe.recipeImage) else {return}
+        ImageService.getImage(withURL: imageURL){
+            recipeImage in
+            self.recipeImageView.image = recipeImage
+        }
+
     }
     
     func setUpVC(recipe:Recipe){
         recipeTitleLabel.text = recipe.recipeName
+        servingsLabel.text = "\(recipe.servings) People"
+        timeLabel.text = "\(recipe.time) mins"
+        tags = recipe.tags
+        steps = recipe.steps
+        ingredients = recipe.ingredients
         
-        guard let imageURL = URL(string: recipe.recipeImage) else {return}
-        ImageService.getImage(withURL: imageURL){
-        recipeImage in
-            self.recipeImageView.image = recipeImage
-        }
+        tagCollectionView.reloadData()
+        
+        setDataSource(type: .directions)
+        
+        guard let curatorImageURL = URL(string: recipe.curatorImage) else { return }
+        
+        ImageService.getImage(withURL: curatorImageURL, completion: {
+            image in
+            self.curatorImageView.image = image
+        })
+        
+        
+
+        //Load Steps
+        
+        //Load Ingredients
+        
     }
 }
 
@@ -183,9 +210,80 @@ extension RecipeDetailViewController:UIScrollViewDelegate{
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         
-        if offsetY < 0{
-          //  recipeImageView.transform = CGAffineTransform(translationX: 0, y: offsetY)
+        
+        
+        if offsetY > view.frame.height * 0.1{
+            //  recipeImageView.transform = CGAffineTransform(translationX: 0, y: offsetY)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.addIngredients.alpha = 1
+            })
+            
         }
         
+        if offsetY > view.frame.height * 0.3{
+          //  recipeImageView.transform = CGAffineTransform(translationX: 0, y: offsetY)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.favoriteButton.alpha = 0
+            })
+            
+        }
+        if offsetY < view.frame.height * 0.2{
+            //  recipeImageView.transform = CGAffineTransform(translationX: 0, y: offsetY)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.favoriteButton.alpha = 1
+            })
+            
+        }
+        if offsetY < view.frame.height * 0.1{
+            //  recipeImageView.transform = CGAffineTransform(translationX: 0, y: offsetY)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.addIngredients.alpha = 0
+            })
+            
+        }
+
+        
     }
+}
+
+extension RecipeDetailViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        guard tags.count < 3 else { return 3}
+         return tags.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCollectionCell", for: indexPath) as! TagCollectionViewCell
+        
+        cell.tagLabel.text = tags[indexPath.row]
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let tagTextCount = tags[indexPath.row].count
+        
+        let width = (tagTextCount * 5) + 14
+        
+        let size = CGSize(width: width, height: 18)
+        return size
+    }
+
+
+    
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        
+        UIView.animate(withDuration: 0.3){
+            self.segmentedControl.buttonBar.frame.origin.x = (self.segmentedControl.frame.width / CGFloat(self.segmentedControl.numberOfSegments)) * CGFloat(self.segmentedControl.selectedSegmentIndex)
+
+        }
+    }
+
+    
+
+    
+    
+
 }

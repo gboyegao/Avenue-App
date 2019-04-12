@@ -138,6 +138,9 @@ class RegisterViewController: UIViewController{
         
     }
     
+    @IBAction func usernameDidEndOnExit(_ sender: Any) {
+        userNameTextField.resignFirstResponder()
+    }
     
     @IBAction func passwordDidEndOnExit(_ sender: Any) {
         passwordTextField.resignFirstResponder()

@@ -50,9 +50,12 @@ class SegmentedControl:UISegmentedControl{
         buttonBar.topAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         buttonBar.heightAnchor.constraint(equalToConstant: 5).isActive = true
         // Constrain the button bar to the left side of the segmented control
-        buttonBar.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        buttonBar.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         // Constrain the button bar to the width of the segmented control divided by the number of segments
         buttonBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1 / CGFloat(self.numberOfSegments)).isActive = true
+        
+        backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9607843137, blue: 0.9882352941, alpha: 1)
+        
         
     }
     

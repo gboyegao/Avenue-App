@@ -37,8 +37,27 @@ class ShoppingItem:Object{
     
 }
 
-class Favorites:Object{
+class Favorite:Object{
+    
+    @objc dynamic var recipeID = ""
+    @objc dynamic var recipeName = ""
+    @objc dynamic var curatorName = ""
+    @objc dynamic var recipeImage = ""
+    @objc dynamic var time = Int()
+    
+    
+    static func loadFavorites() -> [Favorite]{
+        let favorite1 = Favorite()
+        favorite1.recipeName = "Rice and Peas"
+        favorite1.curatorName = "Chef Fregz"
+        favorite1.time = 10
+        
+        let favorites = [favorite1,favorite1,favorite1]
+        
+        return favorites
+    }
     
 }
 
 
+  

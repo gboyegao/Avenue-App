@@ -30,15 +30,27 @@ class DirectionsTableViewCell: UITableViewCell {
         directionLabel.text = direction.text
         directionNumber.text = "\(stepNumber + 1)"
         
-        if let imageUrl = direction.imageURL {
-            ImageService.getImage(withURL: imageUrl){
-                image in
-                    self.directionImageView.image = image
-            }
-        }
-        else{
+        
+        
+        
+        guard let image = direction.imageURL, let imageUrl = URL(string: image) else {
             directionImageView.isHidden = true
+            return
         }
+        
+        directionImageView.isHidden = false
+        
+        
+        ImageService.getImage(withURL: imageUrl){
+            image in
+            self.directionImageView.image = image
+        }
+        
+        
+        
+ //        else{
+//            directionImageView.isHidden = true
+//        }
     }
     
     

@@ -14,6 +14,8 @@ class HomeViewController: UITableViewController,CollectionViewDelegate{
     
     var docRef:DocumentReference!
     
+    var window:UIWindow?
+    
     
     var trending:[Trending] = Trending.loadTrendingData()
     var popular: [Popular] = Popular.loadPopularData()
@@ -43,26 +45,8 @@ class HomeViewController: UITableViewController,CollectionViewDelegate{
         
         coordinator = MainCoordinator(navigationController: navigationController!)
         
-//        docRef = Firestore.firestore().document("trending/recipes")
-//        docRef.getDocument(completion: {
-//            (docSnapshot,error) in
-//            if error != nil{
-//                print(error!.localizedDescription)
-//            }
-//            if let myData = docSnapshot?.data(){
-//                let name = myData["name"] as? [Trending] ?? [Trending]()
-//                self.trending = name
-//
-//            }
-//            //Add Dispatch to Main Thread to reload Table View Data
-//            //Hide Activity Loading Data 
-//            
-//            
-//
-//        })
-        
-        
-     
+        window = UIWindow(frame: UIScreen.main.bounds)
+
         tableView.register(UINib(nibName: "TodayPlannerTableViewCell", bundle: nil), forCellReuseIdentifier: "todayPlannerTableViewCell")
         tableView.register(UINib(nibName: "PopularTableViewCell", bundle: nil), forCellReuseIdentifier: "popularTableViewCell")
         tableView.register(UINib(nibName: "DiscoverTableViewCell", bundle: nil), forCellReuseIdentifier: "discoverTableViewCell")
@@ -72,6 +56,20 @@ class HomeViewController: UITableViewController,CollectionViewDelegate{
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+        
+        guard let window = window else { return 10.0}
+        
+        
+        
+        var trendingCellHeight = window.frame.height * 0.345
+        var popularCellHeight = window.frame.height * 0.263
+        var discoverCellHeight = window.frame.height * 0.158
+        var blogCellHeight = window.frame.height * 0.3
+        
+        
+        
+//        var heights:[CGFloat] = [trendingCellHeight,popularCellHeight,discoverCellHeight,blogCellHeight]
+        
         var heights:[CGFloat] = [280,213,128,237,283]
         
         return heights[indexPath.row];

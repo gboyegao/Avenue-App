@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 
 class FavoriteController{
@@ -14,8 +15,14 @@ class FavoriteController{
     //AddFavorites
     //Delete Favorites
     
-    static func loadFavorites(){}
-    static func makeFavorites(){}
-    static func removeFavorites(){}
+    static func loadFavorites()  -> [Favorite]?{
+        //Load Favorites
+        let realm = try! Realm()
+        let items = realm.objects(Favorite.self)
+        return items.map({$0})
+    }
+    
+    static func makeFavorite(){}
+    static func removeFavorite(){}
     
 }

@@ -10,13 +10,20 @@ import UIKit
 
 class TodayPlannerCollectionViewCell: UICollectionViewCell {
     
+    
+    
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var trendingLabel: UILabel!
     @IBOutlet weak var recipeImageView: UIImageView!
+    @IBOutlet weak var cellView: UIView!
+    @IBOutlet weak var curatorImageView: UIImageView!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
 
 }

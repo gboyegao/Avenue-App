@@ -42,6 +42,7 @@ extension DirectionsDataSource: UITableViewDataSource,UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell") as! DirectionsTableViewCell
        
         cell.update(with: step, stepNumber: indexPath.row)
+        cell.selectionStyle = .none
         return cell
     }
 }

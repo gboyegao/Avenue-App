@@ -11,7 +11,9 @@ import InstantSearch
 
 class ExploreViewController: HitsTableViewController {
     var coordinator:MainCoordinator?
-
+    
+    @IBOutlet weak var searchBar: SearchBarWidget!
+    
     @IBOutlet weak var tableview: HitsTableWidget!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +21,12 @@ class ExploreViewController: HitsTableViewController {
         InstantSearch.shared.registerAllWidgets(in: self.view)
         hitsTableView = tableview
         coordinator = MainCoordinator(navigationController: navigationController!)
+        
+        searchBar.delegate = self
+
     }
+    
+ 
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -37,14 +44,13 @@ class ExploreViewController: HitsTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, containing hit: [String: Any])  {
         
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+
+
+extension ExploreViewController:UISearchBarDelegate{
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
     }
-    */
-
 }

@@ -39,6 +39,7 @@ extension IngredientsDataSource: UITableViewDataSource,UITableViewDelegate {
         let cell = UITableViewCell()
         cell.textLabel?.text = ingredient.quantity + "\t" + ingredient.name
         cell.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9607843137, blue: 0.9882352941, alpha: 1)
+        cell.selectionStyle = .none
         return cell
     }
 }
