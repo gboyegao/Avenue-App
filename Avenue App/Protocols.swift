@@ -7,21 +7,20 @@
 //
 
 import Foundation
-
+import UIKit
 
 protocol CollectionViewDelegate:AnyObject {
     //MAKE GENERIC
     var trending:[Trending]{get}
     var popular:[Popular]{get}
     var discover:[Discover]{get}
+    var articles:[Article]{get}
     
-    func cellClicked(_ atIndex:Any)
+    func cellClicked(cell:UITableViewCell,name:String,imageURL:String)
 }
 
 
 protocol RecipeExpandable {
     var recipeName:String{get}
     var recipeImage:String{get}
-    //IMAGE URL
-    //UUID
 }

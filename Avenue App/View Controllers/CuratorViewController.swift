@@ -16,6 +16,9 @@ class CuratorViewController: UIViewController {
     @IBOutlet weak var curatorBanner: UIImageView!
     @IBOutlet weak var recipeTableView: UITableView!
     
+    var curatorName:String!
+    var curatorImageURL:String!
+    
     var curator:Curator!
     var recipes = [CuratorRecipe]()
     
@@ -46,6 +49,8 @@ class CuratorViewController: UIViewController {
         // Do any additional setup after loading the view.
         recipeTableView.rowHeight = 100
         
+        curatorNameLabel.text = curatorName
+        
         
         NetworkController.getCurator(id: "9UYRGiPOy9BYkLb8olNf", completion: {
             curator in
@@ -59,7 +64,6 @@ class CuratorViewController: UIViewController {
     }
 
     func setUpVC(curator:Curator){
-        curatorNameLabel.text = curator.name
         likesAndFollowingLabel.text = "\(curator.favoriteCount) Likes   \(curator.followingCount) Following"
         recipes = curator.recipes
         currentDataSource = CuratorRecipeDataSource(curatorRecipes: recipes)

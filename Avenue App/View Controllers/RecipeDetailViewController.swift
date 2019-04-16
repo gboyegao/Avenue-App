@@ -31,7 +31,13 @@ class RecipeDetailViewController: UIViewController {
     
     var docRef:DocumentReference!
     
-    var recipe:RecipeExpandable!
+    var expandableRecipe:RecipeExpandable!
+    
+    var recipe:Recipe!
+    
+    var recipeName:String!
+    var recipeImage:String!
+
     
     private enum SourceType: Int {
         case directions, ingredients
@@ -70,7 +76,7 @@ class RecipeDetailViewController: UIViewController {
         
         addIngredients.isHidden = true
         segmentedControl.addTarget(self, action: #selector(segmentChanged(_:)), for: .valueChanged)
-        var docRef = Firestore.firestore().document("recipe/ZbDBusdqU3dL1iNwaGZl")
+        
         
         
         self.setDataSource(type:.directions)
@@ -84,22 +90,19 @@ class RecipeDetailViewController: UIViewController {
         tagCollectionView.delegate = self
         tagCollectionView.dataSource = self
         
-        setUpVC(recipe: recipe)
+        setUpVC()
         
         NetworkController.getRecipe{
             recipe in
             self.setUpVC(recipe: recipe)
+            self.recipe = recipe
         }
 
-  
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
     }
-    
     
     @IBAction func favoriteButtonTapped(_ sender: Any) {
         
@@ -137,13 +140,22 @@ class RecipeDetailViewController: UIViewController {
     
     
     @IBAction func addIngredientsTapped(_ sender: Any) {
-        Alert.showBasicAlert(on: self, with: "Ingredients🌽🍕", message: "Ingredients Saved ✅")
-        ShoppingListController.addItem(curatorName: "", recipeName:  recipe.recipeName, time: 30)
+        if recipe != nil {
+            guard ShoppingListController.itemExistsinDB(with: recipe.recipeID) else {
+                Alert.showBasicAlert(on: self, with: "Ingredients🌽🍕", message: "Ingredients Saved ✅")
+                ShoppingListController.addItem(recipeID:recipe.recipeID,curatorName: recipe.curatorName, recipeName:  recipe.recipeName, time: 30,ingredients: recipe.ingredients,recipeImage:recipe.recipeImage)
+                return
+            }
+                Alert.showBasicAlert(on: self, with: "Oops", message: "This Ingredient Exists in your Shopping List")
+            
+            
+        }
     }
     
-    func setUpVC(recipe:RecipeExpandable){
-        recipeTitleLabel.text = recipe.recipeName
-        guard let imageURL = URL(string: recipe.recipeImage) else {return}
+    func setUpVC(){
+        
+        recipeTitleLabel.text = recipeName
+        guard let imageURL = URL(string: recipeImage) else {return}
         ImageService.getImage(withURL: imageURL){
             recipeImage in
             self.recipeImageView.image = recipeImage

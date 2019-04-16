@@ -31,9 +31,6 @@ extension FavoritesDataSource: UITableViewDataSource,UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return cell(for: favorite(at: indexPath),tableView:tableView,indexPath: indexPath)
     }
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0
-    }
     
     func cell(for favorite: Favorite,tableView: UITableView,indexPath: IndexPath) -> UITableViewCell {
         

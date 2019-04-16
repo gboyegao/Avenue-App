@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class ListDataSource: NSObject {
+public class ListDataSource:NSObject {
     
     var lists: [ShoppingItem]
     
@@ -35,8 +35,10 @@ extension ListDataSource: UITableViewDataSource,UITableViewDelegate {
     }
     public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
+            ShoppingListController.deleteItem(with: lists[indexPath.row].recipeID)
             lists.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            
         }
     }
     

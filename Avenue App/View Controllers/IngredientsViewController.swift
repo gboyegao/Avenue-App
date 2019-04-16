@@ -12,39 +12,64 @@ class IngredientsViewController: UIViewController {
     var coordinator:MainCoordinator?
     
     @IBOutlet weak var ingredientsTableView: UITableView!
+    @IBOutlet weak var recipeNameLabel: UILabel!
+    @IBOutlet weak var curatorNameLabel: UILabel!
+    @IBOutlet weak var recipeImageView: UIImageView!
     
+    var ingredients:[Ingredient] = [Ingredient]()
+    var recipeID:String!
+    var shoppingItem:ShoppingItem?
+
+    var currentDataSource:(UITableViewDelegate & UITableViewDataSource)?{
+        didSet{
+            ingredientsTableView.delegate = currentDataSource
+            ingredientsTableView.dataSource = currentDataSource
+            ingredientsTableView.reloadData()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Load Shopping item for recipe id
+        //SetUpView
+        
+        shoppingItem = ShoppingListController.loadItem(id: recipeID)
+        
+        //Load Shopping Ingredients using ingredients Data Source
+        ingredients =  Array(shoppingItem!.ingredients).map({Ingredient(name: $0.name, quantity: $0.quantity)})
+        
+        currentDataSource =  IngredientsDataSource(ingredients: ingredients)
+        
+        setUpView(item: shoppingItem)
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+     
+        navigationController?.setNavigationBarHidden(true, animated: true)
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+       
+    }
+
+    @IBAction func viewRecipePressed(_ sender: Any) {
+        guard let item = shoppingItem else { return }
+        
+        coordinator?.viewRecipe(recipeName: item.recipeName, recipeImage: item.recipeImage)
+        
+    }
     
     @IBAction func backButtonPressed(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    func setUpView(item:ShoppingItem?){
+        if let item = item {
+            recipeNameLabel.text = item.recipeName
+            curatorNameLabel.text = item.curatorName
+     }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = false
-    }
-    
-    
-    
-
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+

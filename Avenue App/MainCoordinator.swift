@@ -22,30 +22,41 @@ class MainCoordinator:Coordinator{
         
     }
     
-    func viewCurator(){
+    func viewCurator(curatorName:String,curatorImage:String){
         let vc = CuratorViewController.instantiate(storyboardName: "Home") as! CuratorViewController
         vc.coordinator = self
+        vc.curatorName = curatorName
+        vc.curatorImageURL = curatorImage
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func viewRecipe(recipe:RecipeExpandable){
+    func viewRecipe(recipeName:String,recipeImage:String){
         let vc = RecipeDetailViewController.instantiate(storyboardName: "Home") as! RecipeDetailViewController
         vc.coordinator = self
-        vc.recipe = recipe
+        vc.recipeName = recipeName
+        vc.recipeImage = recipeImage
         navigationController.pushViewController(vc, animated: true)
     }
     
     
-    
-    func viewBlog(){
+    func viewBlogArticle(articleName:String,articleImage:String){
+        let vc = BlogDetailViewController.instantiate(storyboardName: "Home") as! BlogDetailViewController
+        vc.coordinator = self
+        vc.articleName = articleName
+        vc.imageURL = articleImage
+        
+        navigationController.pushViewController(vc, animated: true)
         
     }
     
-    func viewShoppingIngredients(){
+    func viewShoppingIngredients(id:String){
         let vc = IngredientsViewController.instantiate(storyboardName: "List") as! IngredientsViewController
         vc.coordinator = self
+        vc.recipeID = id
         navigationController.pushViewController(vc, animated: true)
-
+        
+        
+        
     }
     
     

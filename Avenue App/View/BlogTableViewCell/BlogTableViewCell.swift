@@ -11,6 +11,8 @@ import UIKit
 class BlogTableViewCell: UITableViewCell {
 
     @IBOutlet weak var blogCollectionView: UICollectionView!
+     weak var delegate:CollectionViewDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,14 +33,26 @@ class BlogTableViewCell: UITableViewCell {
 //TO-DO: INTEGRATE DATA SOURCE TO ONE SOURCE
 extension BlogTableViewCell:UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return delegate!.articles.count
          
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let blogArticle = delegate?.articles[indexPath.row] else { return UICollectionViewCell() }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "blogSectionCell", for: indexPath as IndexPath) as! BlogCollectionViewCell
         
+        cell.setUpView(article: blogArticle)
+        
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let blogArticle = delegate?.articles[indexPath.row] else { return }
+        
+        delegate?.cellClicked(cell: self, name: blogArticle.articleName, imageURL: blogArticle.articleImage)
+        
     }
     
     

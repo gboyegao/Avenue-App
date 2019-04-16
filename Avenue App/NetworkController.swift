@@ -30,7 +30,7 @@ class NetworkController{
                 let recipeStepsArray = myData["steps"] as? [[String:String]] ?? []
                 let recipeIngredientsArray = myData["ingredients"] as? [[String:String]] ?? []
                 let recipeCurator = myData["curatorImage"] as? String ?? ""
-                
+                //Get Recipe id from firebase
                 
                 var recipeSteps = [Step]()
                 var recipeIngredients = [Ingredient]()
@@ -53,7 +53,8 @@ class NetworkController{
                 
                
                 
-                var recipe = Recipe(recipeName: "Pancakes", recipeImage: "image1", curatorImage: "avatar", tags: ["Quick Fix"], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: 100, favoriteCount: 10)
+                var recipe = Recipe(recipeName: "Pancakes", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "avatar", tags: ["Quick Fix"], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: "",recipeID:"bkncknkfndkfndkfndkf",curatorName:"Chef Chi",favoriteCount: 10)
+
                 recipe.recipeName = recipeName
                 recipe.servings = recipeServings
                 recipe.time = recipeTime

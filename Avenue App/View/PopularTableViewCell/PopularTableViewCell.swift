@@ -53,8 +53,8 @@ extension PopularTableViewCell:UICollectionViewDataSource{
 
 extension PopularTableViewCell:UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let  popularRecipe = delegate?.popular[indexPath.row]
-        delegate?.cellClicked(popularRecipe)
+        guard let popularRecipe = delegate?.popular[indexPath.row] else { return }
+        delegate?.cellClicked(cell:self,name: popularRecipe.recipeName,imageURL: popularRecipe.recipeImage)
     }
     
 }

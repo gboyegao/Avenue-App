@@ -81,8 +81,8 @@ extension TodayPlannerTableViewCell:UICollectionViewDataSource{
 extension TodayPlannerTableViewCell:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let  trendingRecipe = delegate?.trending[indexPath.row]
-        delegate?.cellClicked(trendingRecipe)
+        guard let trendingRecipe = delegate?.trending[indexPath.row] else { return }
+        delegate?.cellClicked(cell:self,name: trendingRecipe.recipeName, imageURL: trendingRecipe.recipeImage)
     }
 //
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -65,6 +65,19 @@ struct Discover{
     
 }
 
+struct Article{
+    let articleName:String
+    let articleImage:String
+    
+    static func loadArticleData() -> [Article]{
+        let articleData = [
+            Article(articleName: "Meet Chef Fregz Resident Cook at", articleImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png")
+        ]
+        return articleData
+    }
+    
+}
+
 
 
 

@@ -10,8 +10,12 @@ import UIKit
 
 class RecipeSlideViewController: UIViewController {
     
+    var steps:[Step]!
+    
+    
     @IBOutlet weak var leftContainerView: UIView!
-
+    @IBOutlet weak var stepTextLabel: UILabel!
+    @IBOutlet weak var stepImageView: RoundedImageView!
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -27,5 +31,11 @@ class RecipeSlideViewController: UIViewController {
     @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
         // handling code
         print("Hello")
+    }
+    
+    
+    func setUpView(){
+        
+        
     }
 }

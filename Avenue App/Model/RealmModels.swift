@@ -13,7 +13,7 @@ import RealmSwift
 class ShoppingIngredients:Object{
     @objc dynamic var name = "Rice"
     @objc dynamic var quantity = "3 Dericas"
-    let shoppingItem = LinkingObjects(fromType:ShoppingItem.self,property:"ingredients")
+    
 }
 
 class ShoppingList:Object{
@@ -23,9 +23,11 @@ class ShoppingList:Object{
 class ShoppingItem:Object{
     @objc dynamic var curatorName = "Julian Funmi"
     @objc dynamic var recipeName = "Chicken Shawarma"
+    @objc dynamic var recipeImage = ""
+    @objc dynamic var recipeID = ""
     @objc dynamic var time = Int()
     
-    let ingredients = List<ShoppingIngredients>()
+    var ingredients = List<ShoppingIngredients>()
     
     
     

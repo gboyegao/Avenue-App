@@ -22,7 +22,7 @@ public class FollowingsDataSource: NSObject {
     }
 }
 
-extension FollowingsDataSource: UITableViewDataSource,UITableViewDelegate {
+extension FollowingsDataSource: UITableViewDataSource{
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

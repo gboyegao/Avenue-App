@@ -8,8 +8,12 @@
 
 import UIKit
 
+
 class ListViewController: UIViewController {
+    
+    
     @IBOutlet weak var listTableView: UITableView!
+    
     
     var itemList:[ShoppingItem]? = [ShoppingItem]()
     var coordinator:MainCoordinator?
@@ -38,6 +42,7 @@ class ListViewController: UIViewController {
         } //Can use special UI for case where list is empty
         currentDataSource = ListDataSource(lists:list)
         
+         navigationController?.setNavigationBarHidden(false, animated: true)
         
     }
     
@@ -56,7 +61,9 @@ class ListViewController: UIViewController {
 extension ListViewController:UITableViewDelegate{
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.viewShoppingIngredients()
+        guard let itemList = itemList else { return }
+        
+        coordinator?.viewShoppingIngredients(id:itemList[indexPath.row].recipeID)
     }
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0

@@ -47,8 +47,8 @@ return 3
 
 extension DiscoverTableViewCell:UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let  discoverRecipe = delegate?.discover[indexPath.row]
-        delegate?.cellClicked(discoverRecipe)
+        guard let  discoverRecipe = delegate?.discover[indexPath.row] else { return }
+            delegate?.cellClicked(cell: self, name: discoverRecipe.curatorName, imageURL: discoverRecipe.curatorImage)
 
     }
 }

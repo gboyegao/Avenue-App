@@ -17,16 +17,18 @@ struct Recipe {
     var ingredients:[Ingredient]
     var servings:Int
     var time:Int
-    var curatorID:Int
+    var curatorID:String
+    var recipeID:String
+    var curatorName:String
     var favoriteCount:Int
     
     static func loadRecipeData() -> [Recipe]{
             let recipeData = [
-                Recipe(recipeName: "Pancakes", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "avatar", tags: ["Quick Fix"], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: 100, favoriteCount: 10),
-                Recipe(recipeName: "Pancakes", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "avatar", tags: ["Quick Fix"], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: 100, favoriteCount: 10),
-                Recipe(recipeName: "Pancakes", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "avatar", tags: ["Quick Fix"], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: 100, favoriteCount: 10),
-                Recipe(recipeName: "Pancakes", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "avatar", tags: ["Quick Fix"], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: 100, favoriteCount: 10),
-        ]
+                Recipe(recipeName: "Pancakes", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "avatar", tags: ["Quick Fix"], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: "",recipeID:"jdjhbdjbsjb",curatorName:"Chef Chi",favoriteCount: 10),
+                Recipe(recipeName: "Pancakes", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "avatar", tags: ["Quick Fix"], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: "",recipeID:"bksjhdkbskbdbcskbcb",curatorName:"Chef Chi",favoriteCount: 10),
+                Recipe(recipeName: "Pancakes", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "avatar", tags: ["Quick Fix"], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: "",recipeID:"dkshcdkskhckshkchsh",curatorName:"Chef Chi",favoriteCount: 10),
+                ]
+
         
         return recipeData
     

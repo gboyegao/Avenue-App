@@ -20,21 +20,26 @@ class HomeViewController: UITableViewController,CollectionViewDelegate{
     var trending:[Trending] = Trending.loadTrendingData()
     var popular: [Popular] = Popular.loadPopularData()
     var discover: [Discover] = Discover.loadDiscoverData()
+    var articles: [Article] = Article.loadArticleData()
     
     var coordinator:MainCoordinator?
     
-    func cellClicked(_ atIndex: Any) {
-        print(atIndex)
-        switch atIndex {
-            case let atIndex as Trending:
-                coordinator?.viewRecipe(recipe: atIndex)
-            case let atIndex as Popular:
-                coordinator?.viewRecipe(recipe: atIndex)
-            case let atIndex as Discover:
-                coordinator?.viewCurator()
-        default:
-            print("Type not supported")
+    func cellClicked(cell:UITableViewCell,name:String,imageURL:String) {
+        switch cell {
+            case _ as PopularTableViewCell:
+                coordinator?.viewRecipe(recipeName: name, recipeImage:imageURL)
+            case _ as TodayPlannerTableViewCell:
+                coordinator?.viewRecipe(recipeName: name, recipeImage:imageURL)
+            case _ as DiscoverTableViewCell:
+                coordinator?.viewCurator(curatorName: name,curatorImage:imageURL)
+            case _ as BlogTableViewCell:
+                coordinator?.viewBlogArticle(articleName: name, articleImage: imageURL)
+                print("")
+            default:
+                print("Type not supported")
         }
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +102,7 @@ class HomeViewController: UITableViewController,CollectionViewDelegate{
         let discoverCell = tableView.dequeueReusableCell(withIdentifier: "discoverTableViewCell") as!  DiscoverTableViewCell
             discoverCell.delegate = self
         let blogCell = tableView.dequeueReusableCell(withIdentifier: "blogTableViewCell") as!  BlogTableViewCell
+            blogCell.delegate = self
         let cells: [UITableViewCell] = [todayCell,popularCell,discoverCell,blogCell]
         //
         // Configure the cell...

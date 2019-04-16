@@ -10,10 +10,23 @@ import UIKit
 
 class BlogCollectionViewCell: UICollectionViewCell {
     
-
+    @IBOutlet weak var articleNameLabel: UILabel!
+    @IBOutlet weak var articleImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    func setUpView(article:Article){
+        articleNameLabel.text = article.articleName
+        guard let imageURL = URL(string: article.articleImage) else { return }
+        
+        ImageService.getImage(withURL: imageURL, completion: {
+            image in
+            self.articleImageView.image = image
+            
+        })
+    }
+    
 
 }
