@@ -11,18 +11,29 @@ import Firebase
 import GoogleSignIn
 import InstantSearch
 import RealmSwift
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate,UNUserNotificationCenterDelegate{
     
     let defaults = UserDefaults.standard
     var window: UIWindow?
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
+            completionHandler([.alert,.sound])
+    }
 
 
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound], completionHandler: {
+            (granted,error) in
+              print(granted)
+        })
         
+        UserDataController.createUser(firstName: "Adegboyega", lastName: "Olusunmade", email: "gb@rix.com", id: "fdjfvbd")
+
         
         FirebaseApp.configure()
         

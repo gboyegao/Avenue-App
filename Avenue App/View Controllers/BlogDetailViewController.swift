@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class BlogDetailViewController: UIViewController {
 
     var blogContent:[BlogContent] = loadBlogContent()
@@ -21,12 +22,14 @@ class BlogDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        coordinator = MainCoordinator(navigationController: navigationController!)
-         navigationController?.setNavigationBarHidden(true, animated: true)
         setUpView()
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+    navigationController?.navigationBar.isHidden = true
+
+    }
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
     }
@@ -54,7 +57,7 @@ extension BlogDetailViewController:UITableViewDelegate{
             return estimatedFrame.height + 11
             
         case let content as TextContent:
-            let estimatedFrame = NSString(string: content.text).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes , context: nil)
+            let estimatedFrame = content.text.wrappedIntoStyle.convertHtml().boundingRect(with: size, options: .usesLineFragmentOrigin, context: nil)
             return estimatedFrame.height + 11
         case _ as ImageContent:
             guard let image = self.imageDictionary[indexPath] else { return  0}
@@ -82,7 +85,8 @@ extension BlogDetailViewController:UITableViewDataSource{
                 return cell
             case let content  as TextContent:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "blogTextCell") as! TextContentTableViewCell
-                cell.textContentLabel.text = content.text
+                cell.textContentLabel.attributedText = content.text.wrappedIntoStyle.convertHtml()
+
                 return cell
             case let content as ImageContent:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "blogImageCell") as! ImageContentTableViewCell

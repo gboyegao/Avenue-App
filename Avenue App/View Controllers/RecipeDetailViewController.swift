@@ -69,7 +69,6 @@ class RecipeDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         scrollView.delegate = self
-        navigationController?.setNavigationBarHidden(true, animated: true)
         
         
         
@@ -99,6 +98,14 @@ class RecipeDetailViewController: UIViewController {
         }
 
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+        
+        
+        
+    }
+
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
@@ -106,7 +113,19 @@ class RecipeDetailViewController: UIViewController {
     
     @IBAction func favoriteButtonTapped(_ sender: Any) {
         
-        favoriteButton.isSelected = !favoriteButton.isSelected
+        favoriteButton.isSelected.toggle()
+        
+
+        if recipe != nil {
+            guard favoriteButton.isSelected else {
+                FavoriteController.removeFavorite(id: recipe.recipeID)
+                return
+            }
+            
+            guard !FavoriteController.faveExistsInDB(id: recipe.recipeID)  else { return }
+        FavoriteController.makeFavorite(recipeID: recipe.recipeID, curatorName: recipe.curatorName, recipeImage: recipe.recipeImage, recipeName: recipe.recipeName, time: recipe.time)
+        }
+        
         
     }
     
@@ -182,6 +201,8 @@ class RecipeDetailViewController: UIViewController {
             self.curatorImageView.image = image
         })
         
+        favoriteButton.isSelected = FavoriteController.faveExistsInDB(id: recipe.recipeID)
+        
         
 
         //Load Steps
@@ -213,6 +234,9 @@ extension RecipeDetailViewController:UITableViewDelegate{
     
     return height + imageHeight
     
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        coordinator?.viewRecipeSlide(steps: steps, indexPath: indexPath)
     }
     
 }
@@ -282,7 +306,6 @@ extension RecipeDetailViewController:UICollectionViewDelegate,UICollectionViewDa
         let size = CGSize(width: width, height: 18)
         return size
     }
-
 
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {

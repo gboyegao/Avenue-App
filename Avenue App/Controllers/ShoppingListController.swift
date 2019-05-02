@@ -56,10 +56,6 @@ class ShoppingListController{
             
         }
         
-        
-        
-        
-        
         do {
             try realm.write {
                 realm.add(newItem)

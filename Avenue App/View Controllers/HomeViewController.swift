@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 
 class HomeViewController: UITableViewController,CollectionViewDelegate{
@@ -47,6 +48,20 @@ class HomeViewController: UITableViewController,CollectionViewDelegate{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Blah Blah"
+        content.body = "Body"
+        content.sound = UNNotificationSound.default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        
+        //UNCalendarNotificationTrigger
+        //UNlocationtrigger
+        
+        let request = UNNotificationRequest(identifier: "testIdentifier", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
         
         coordinator = MainCoordinator(navigationController: navigationController!)
         

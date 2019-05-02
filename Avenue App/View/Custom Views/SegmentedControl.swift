@@ -17,54 +17,25 @@ class SegmentedControl:UISegmentedControl{
     override init(frame: CGRect) {
         super.init(frame:frame)
         setupSegmentedControlView()
-        addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: UIControl.Event.valueChanged)
-
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupSegmentedControlView()
-        addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: UIControl.Event.valueChanged)
-
+       setupSegmentedControlView()
     }
     
     //Abstract into single function
     func setupSegmentedControlView(){
         setTitleTextAttributes([
-            NSAttributedString.Key.font : UIFont(name: "Montserrat-SemiBold", size: 15),
-            NSAttributedString.Key.foregroundColor: UIColor.lightGray
-            ], for: .normal)
+            NSAttributedString.Key.font : UIFont(name: "Montserrat-SemiBold", size: 13)], for: .normal)
+        
+        
         
         setTitleTextAttributes([
-            NSAttributedString.Key.font : UIFont(name: "Montserrat-SemiBold", size: 14),
-            NSAttributedString.Key.foregroundColor: UIColor.orange
+            NSAttributedString.Key.font : UIFont(name: "Montserrat-SemiBold", size: 14)
             ], for: .selected)
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        buttonBar.translatesAutoresizingMaskIntoConstraints = false
-        buttonBar.backgroundColor = .orange
-        addSubview(buttonBar)
-        
-        // Constrain the top of the button bar to the bottom of the segmented control
-        buttonBar.topAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        buttonBar.heightAnchor.constraint(equalToConstant: 5).isActive = true
-        // Constrain the button bar to the left side of the segmented control
-        buttonBar.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        // Constrain the button bar to the width of the segmented control divided by the number of segments
-        buttonBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1 / CGFloat(self.numberOfSegments)).isActive = true
-        
-        backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9607843137, blue: 0.9882352941, alpha: 1)
-        
-        
     }
     
-    @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
-        UIView.animate(withDuration: 0.3){
-            self.buttonBar.frame.origin.x = (self.frame.width / CGFloat(self.numberOfSegments)) * CGFloat(self.selectedSegmentIndex)
-            
-        }
-    }
     
     
 

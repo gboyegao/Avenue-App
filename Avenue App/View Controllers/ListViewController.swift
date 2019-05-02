@@ -66,7 +66,7 @@ extension ListViewController:UITableViewDelegate{
         coordinator?.viewShoppingIngredients(id:itemList[indexPath.row].recipeID)
     }
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0
+        return (view.frame.width * 0.19) + 40
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

@@ -40,7 +40,6 @@ class RoundedView: UIView{
             self.layer.borderColor = borderColor.cgColor
         }
     }
-    
     override func prepareForInterfaceBuilder() {
         
         super.prepareForInterfaceBuilder()

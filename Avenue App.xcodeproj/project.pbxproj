@@ -63,6 +63,7 @@
 		5F65E6ED21EDE93400EA7E0E /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65E6EC21EDE93400EA7E0E /* SignupModel.swift */; };
 		5F65E6EF21EDEA1400EA7E0E /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65E6EE21EDEA1400EA7E0E /* PasswordValidator.swift */; };
 		5F65E6F121EDF9A400EA7E0E /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65E6F021EDF9A400EA7E0E /* EmailValidator.swift */; };
+		5F6B59A02278B46000E8D95B /* UserDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B599F2278B46000E8D95B /* UserDataController.swift */; };
 		5F7205732222A71A008D0310 /* ListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7205722222A71A008D0310 /* ListDataSource.swift */; };
 		5F7205752222AD6F008D0310 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7205742222AD6F008D0310 /* ListTableViewCell.swift */; };
 		5F742D4F222D85F200F00520 /* RecipeSlideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F742D4E222D85F200F00520 /* RecipeSlideViewController.swift */; };
@@ -71,6 +72,8 @@
 		5F742D56222FCF2B00F00520 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F742D55222FCF2B00F00520 /* MainCoordinator.swift */; };
 		5F742D58222FD25200F00520 /* CuratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F742D57222FD25200F00520 /* CuratorViewController.swift */; };
 		5F742D5A222FE41600F00520 /* BlogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F742D59222FE41600F00520 /* BlogDetailViewController.swift */; };
+		5F89207C2270967C007E14C9 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F89207B2270967C007E14C9 /* EditProfileTableViewController.swift */; };
+		5F89207E2271DBF0007E14C9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F89207D2271DBF0007E14C9 /* EditProfileViewController.swift */; };
 		5F8E8C4B2220A090002838B4 /* FollowingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8E8C4A2220A090002838B4 /* FollowingDataSource.swift */; };
 		5F8E8C4D2220A0A4002838B4 /* FavoritesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8E8C4C2220A0A4002838B4 /* FavoritesDataSource.swift */; };
 		5F8E8C502220A4A4002838B4 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8E8C4F2220A4A4002838B4 /* FavoritesTableViewCell.swift */; };
@@ -189,6 +192,7 @@
 		5F65E6EC21EDE93400EA7E0E /* SignupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModel.swift; sourceTree = "<group>"; };
 		5F65E6EE21EDEA1400EA7E0E /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
 		5F65E6F021EDF9A400EA7E0E /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
+		5F6B599F2278B46000E8D95B /* UserDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataController.swift; sourceTree = "<group>"; };
 		5F7205722222A71A008D0310 /* ListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataSource.swift; sourceTree = "<group>"; };
 		5F7205742222AD6F008D0310 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		5F742D4E222D85F200F00520 /* RecipeSlideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSlideViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +201,8 @@
 		5F742D55222FCF2B00F00520 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		5F742D57222FD25200F00520 /* CuratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuratorViewController.swift; sourceTree = "<group>"; };
 		5F742D59222FE41600F00520 /* BlogDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogDetailViewController.swift; sourceTree = "<group>"; };
+		5F89207B2270967C007E14C9 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
+		5F89207D2271DBF0007E14C9 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		5F8E8C4A2220A090002838B4 /* FollowingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingDataSource.swift; sourceTree = "<group>"; };
 		5F8E8C4C2220A0A4002838B4 /* FavoritesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesDataSource.swift; sourceTree = "<group>"; };
 		5F8E8C4F2220A4A4002838B4 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
@@ -360,6 +366,8 @@
 				5F742D4E222D85F200F00520 /* RecipeSlideViewController.swift */,
 				5F742D57222FD25200F00520 /* CuratorViewController.swift */,
 				5F742D59222FE41600F00520 /* BlogDetailViewController.swift */,
+				5F89207B2270967C007E14C9 /* EditProfileTableViewController.swift */,
+				5F89207D2271DBF0007E14C9 /* EditProfileViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -545,6 +553,7 @@
 			children = (
 				5FDD350E2226B061000F9B0E /* FavoriteController.swift */,
 				5F33C017222B0B0D00E18DC8 /* ShoppingListController.swift */,
+				5F6B599F2278B46000E8D95B /* UserDataController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -838,6 +847,7 @@
 				5F33C01C222C13E900E18DC8 /* RoundedButton.swift in Sources */,
 				5FCE0DC9221C16FD0071E00C /* Models.swift in Sources */,
 				5F416C01221FF76C001EA396 /* CircularImageView.swift in Sources */,
+				5F6B59A02278B46000E8D95B /* UserDataController.swift in Sources */,
 				5FD73C56223C4ACD00434500 /* FavoriteService.swift in Sources */,
 				5F1B03E521AD60B900F46843 /* Tag.swift in Sources */,
 				5FE0003022248AC0001DE3A4 /* RoundedSides.swift in Sources */,
@@ -854,6 +864,7 @@
 				5F51C88321A71CFD0039927F /* BlogCollectionViewCell.swift in Sources */,
 				5FC8561F21F88F0700847B76 /* TagLabel.swift in Sources */,
 				5FDD350F2226B061000F9B0E /* FavoriteController.swift in Sources */,
+				5F89207E2271DBF0007E14C9 /* EditProfileViewController.swift in Sources */,
 				5F65E6F121EDF9A400EA7E0E /* EmailValidator.swift in Sources */,
 				5F1B03E821AD65AE00F46843 /* Product.swift in Sources */,
 				5FA7532F222C92AA001B1073 /* Coordinator.swift in Sources */,
@@ -887,6 +898,7 @@
 				5F24246B21A170A800DA096C /* TodayPlannerCollectionViewCell.swift in Sources */,
 				5F8E8C522220A4C2002838B4 /* FollowingTableViewCell.swift in Sources */,
 				5F51C86221A6F4860039927F /* DiscoverTableViewCell.swift in Sources */,
+				5F89207C2270967C007E14C9 /* EditProfileTableViewController.swift in Sources */,
 				5F416BFF221FE7F2001EA396 /* SegmentedControl.swift in Sources */,
 				5FB17E472214D4BC0010DD35 /* SettingsTableViewController.swift in Sources */,
 				5F1B03DC21AD553500F46843 /* Recipe.swift in Sources */,

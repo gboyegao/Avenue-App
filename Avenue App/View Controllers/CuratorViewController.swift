@@ -15,7 +15,9 @@ class CuratorViewController: UIViewController {
     @IBOutlet weak var likesAndFollowingLabel: UILabel!
     @IBOutlet weak var curatorBanner: UIImageView!
     @IBOutlet weak var recipeTableView: UITableView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var followButton: UIButton!
     var curatorName:String!
     var curatorImageURL:String!
     
@@ -26,7 +28,7 @@ class CuratorViewController: UIViewController {
     
     var currentDataSource:(UITableViewDelegate & UITableViewDataSource)?{
         didSet{
-            recipeTableView.delegate = currentDataSource
+            recipeTableView.delegate = self
             recipeTableView.dataSource = currentDataSource
             recipeTableView.reloadData()
         }
@@ -58,6 +60,24 @@ class CuratorViewController: UIViewController {
         })
     }
     
+    override func viewDidLayoutSubviews() {
+            curatorImageView.layer.cornerRadius = (view.frame.height * 0.18) / 2
+            curatorImageView.layer.borderWidth = view.frame.height * 0.18 * 0.046
+        followButton.translatesAutoresizingMaskIntoConstraints = false
+        
+            likesAndFollowingLabel.translatesAutoresizingMaskIntoConstraints = false
+        curatorImageView.translatesAutoresizingMaskIntoConstraints = false
+            likesAndFollowingLabel.topAnchor.constraint(equalTo: curatorNameLabel.bottomAnchor, constant: view.frame.height * 0.01).isActive = true
+        
+            followButton.topAnchor.constraint(equalTo: likesAndFollowingLabel.bottomAnchor, constant: view.frame.height * 0.018).isActive = true
+        
+        
+            curatorImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: (view.frame.height * 0.018)).isActive = true
+        
+        
+    }
+
+    
     @IBAction func backButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         navigationController?.popViewController(animated: true)
@@ -68,7 +88,12 @@ class CuratorViewController: UIViewController {
         recipes = curator.recipes
         currentDataSource = CuratorRecipeDataSource(curatorRecipes: recipes)
     }
-    
-    
-    
+}
+
+extension CuratorViewController:UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let recipe = recipes[indexPath.row]
+            coordinator?.viewRecipe(recipeName: recipe.recipeName, recipeImage: recipe.recipeImage)
+    }
 }

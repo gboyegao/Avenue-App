@@ -19,7 +19,8 @@ class RegisterViewController: UIViewController{
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmTextField: UITextField!
-    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     var signupModel:SignupModel!
     
@@ -125,6 +126,13 @@ class RegisterViewController: UIViewController{
                 )
                 
                 self.defaults.set(true, forKey: UDKey.LoggedIn.rawValue)
+                
+                guard  let firstName = self.firstNameTextField.text,let lastName = self.lastNameTextField.text,let email = self.emailTextField.text else {
+                    return
+                }
+                
+                UserDataController.createUser(firstName: firstName, lastName: lastName, email: email, id: user.uid)
+                
                 self.performSegue(withIdentifier: "registerToHome", sender: self)
 
                 
@@ -138,10 +146,14 @@ class RegisterViewController: UIViewController{
         
     }
     
-    @IBAction func usernameDidEndOnExit(_ sender: Any) {
-        userNameTextField.resignFirstResponder()
+    @IBAction func firstNameDidEndOnExit(_ sender: Any) {
+        firstNameTextField.resignFirstResponder()
     }
-    
+
+    @IBAction func lastNameDidEndOnExit(_ sender: Any) {
+        lastNameTextField.resignFirstResponder()
+    }
+
     @IBAction func passwordDidEndOnExit(_ sender: Any) {
         passwordTextField.resignFirstResponder()
         

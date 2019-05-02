@@ -13,8 +13,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileTableView: UITableView!
     @IBOutlet weak var profileSegmentedControl: SegmentedControl!
     @IBOutlet weak var profileImageView: CircularImageView!
+    @IBOutlet weak var curatorNameLabel: UILabel!
     
-    let favorites = Favorite.loadFavorites()
+    let favorites:[Favorite]? = [Favorite]()
     let followings = Following.loadFollowings()
     
     private enum SourceType: Int {
@@ -40,17 +41,23 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        profileImageView.layer.cornerRadius = profileImageView.constraints.heigh / 2        // Do any additional setup after loading the view.
-     profileSegmentedControl.backgroundColor = .white
      profileSegmentedControl.addTarget(self, action: #selector(segmentChanged(_:)), for: .valueChanged)
-        setDataSource(type: .favorites)
         
         coordinator = MainCoordinator(navigationController: navigationController!)
-
+        
+        
+        
+    }
+    override func viewDidLayoutSubviews() {
+        profileImageView.layer.cornerRadius = (view.frame.height * 0.18) / 2
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: true)
+        curatorNameLabel.text = "\(UserDataController.loadFirstName()) \(UserDataController.loadLastName())"
+        
+            setDataSource(type: .favorites)
+        
     }
     
     
@@ -63,11 +70,18 @@ class ProfileViewController: UIViewController {
     private func setDataSource(type:SourceType){
         switch type {
         case .favorites:
+            let favoriteList = FavoriteController.loadFavorites()
+            guard let favorites = favoriteList else{
+                return
+            }
+            profileSegmentedControl.selectedSegmentIndex = 0
             self.currentDataSource = FavoritesDataSource(favorites: favorites)
             self.currentSourceType = .favorites
         case .followings:
             self.currentDataSource = FollowingsDataSource(followings: followings)
             self.currentSourceType = .followings
+            profileSegmentedControl.selectedSegmentIndex = 1
+
         }
     }
 }
@@ -86,16 +100,21 @@ extension ProfileViewController:UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
         if currentSourceType == .followings {
             let selectedCurator = followings[indexPath.row]
-            tableView.deselectRow(at: indexPath, animated: true)
+        
             coordinator?.viewCurator(curatorName: selectedCurator.curatorName, curatorImage: selectedCurator.curatorImage)
             return
         }
         else {
+            let favoriteList = FavoriteController.loadFavorites()
+            guard let favorites = favoriteList else{
+                return
+            }
             let selectedRecipe = favorites[indexPath.row]
-            tableView.deselectRow(at: indexPath, animated: true)
-            coordinator?.viewRecipe(recipeName: selectedRecipe.recipeName, recipeImage: selectedRecipe.recipeImage)
+                        coordinator?.viewRecipe(recipeName: selectedRecipe.recipeName, recipeImage: selectedRecipe.recipeImage)
             return
             
         }

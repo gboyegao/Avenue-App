@@ -7,23 +7,79 @@
 //
 
 import UIKit
+import SafariServices
+import MessageUI
 
 
-class SettingsTableViewController: UITableViewController {
+
+class SettingsTableViewController: UITableViewController,MFMailComposeViewControllerDelegate{
+    
+    
+    @IBOutlet weak var curatorNameLabel: UILabel!
+    
+    
+    
     let defaults = UserDefaults.standard
-    var logOutIndexPath =  IndexPath(row: 0, section: 3)
+    var editProfileIndexPath     =  IndexPath(row: 0, section: 0)
+    var notificationsIndexPath   =  IndexPath(row: 0, section: 1)
+    var aboutUsIndexPath         =  IndexPath(row: 1, section: 1)
+    var helpIndexPath            =  IndexPath(row: 2, section: 1)
+    var rateAppIndexPath         =  IndexPath(row: 3, section: 2)
+    var logOutIndexPath =  IndexPath(row: 0, section: 2)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {        
+        curatorNameLabel.text = "\(UserDataController.loadFirstName()) \(UserDataController.loadLastName())"
+
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch (indexPath.row,indexPath.section) {
-        case (logOutIndexPath.row,logOutIndexPath.section):
+        switch indexPath {
+            
+        case editProfileIndexPath:
+            performSegue(withIdentifier: "editProfile", sender: nil)
+            break
+        case notificationsIndexPath:
+            performSegue(withIdentifier: "notifications", sender: nil)
+            break
+        case aboutUsIndexPath:
+            performSegue(withIdentifier: "aboutUs", sender: nil)
+            break
+        case helpIndexPath:
+            guard MFMailComposeViewController.canSendMail() else {
+                print("Can not send mail")
+                return
+            }
+            let mailComposer = MFMailComposeViewController()
+            mailComposer.mailComposeDelegate = self
+            mailComposer.setToRecipients(["example@example.com"])
+            print("Mail Pressed")
+            present(mailComposer, animated: true, completion: nil)
+            
+            break
+        case rateAppIndexPath:
+            rateApp()
+            break
+        case logOutIndexPath:
             print("LoggedOut")
             logOutTapped()
         default:
             break
+        }
+    }
+    
+    func rateApp() {
+      if let url = URL(string: "itms-apps://itunes.apple.com/app/" + "appId") {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                
+            } else {
+                UIApplication.shared.openURL(url)
+            }
         }
     }
     
@@ -47,6 +103,9 @@ class SettingsTableViewController: UITableViewController {
 
     }
     
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
+    }
     
     func logOut(){
         //LogOut from Firebase

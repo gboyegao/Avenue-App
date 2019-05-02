@@ -18,9 +18,13 @@ protocol CollectionViewDelegate:AnyObject {
     
     func cellClicked(cell:UITableViewCell,name:String,imageURL:String)
 }
-
-
 protocol RecipeExpandable {
     var recipeName:String{get}
     var recipeImage:String{get}
+}
+
+
+protocol ProfileDetailDelegate {
+    var firstName:String?{ get }
+    var lastName:String?{ get }
 }

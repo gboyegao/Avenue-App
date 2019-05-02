@@ -10,6 +10,15 @@ import Foundation
 import RealmSwift
 
 
+class User:Object{
+    @objc dynamic var ID = ""
+    @objc dynamic var firstName = "Julian Funmi"
+    @objc dynamic var lastName = "Julian Funmi"
+    @objc dynamic var email = "Julian Funmi"
+    
+}
+
+
 class ShoppingIngredients:Object{
     @objc dynamic var name = "Rice"
     @objc dynamic var quantity = "3 Dericas"

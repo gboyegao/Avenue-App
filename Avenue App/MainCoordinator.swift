@@ -38,6 +38,14 @@ class MainCoordinator:Coordinator{
         navigationController.pushViewController(vc, animated: true)
     }
     
+    func viewRecipeSlide(steps:[Step],indexPath:IndexPath){
+        let vc = RecipeSlideViewController.instantiate(storyboardName: "Home") as! RecipeSlideViewController
+        vc.coordinator = self
+        vc.steps = steps
+        vc.currentSlide = indexPath.row
+        navigationController.pushViewController(vc, animated: true)
+        
+    }
     
     func viewBlogArticle(articleName:String,articleImage:String){
         let vc = BlogDetailViewController.instantiate(storyboardName: "Home") as! BlogDetailViewController

@@ -33,13 +33,6 @@ extension CuratorRecipeDataSource: UITableViewDataSource,UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return cell(for: curatorRecipe(at: indexPath),tableView:tableView,indexPath: indexPath)
     }
-    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete{
-            curatorRecipes.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-    }
-    
     func cell(for curatorRecipe: CuratorRecipe,tableView: UITableView,indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "curatorRecipeCell") as! CuratorRecipeTableViewCell
