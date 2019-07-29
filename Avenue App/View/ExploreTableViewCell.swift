@@ -10,7 +10,10 @@ import UIKit
 
 class ExploreTableViewCell: UITableViewCell {    
     @IBOutlet weak var recipeNameLabel: UILabel!
+    @IBOutlet weak var curatorNameLabel: UILabel!
     
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var recipeImageView: RoundedImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

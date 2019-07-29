@@ -13,9 +13,9 @@ import Firebase
 class NetworkController{
     static var docRef = Firestore.firestore()
     
-    static func getRecipe(completion: @escaping (Recipe) -> Void){
+    static func getRecipe(id:String,completion: @escaping (Recipe) -> Void){
         //Add Document id
-        docRef.document("recipe/ZbDBusdqU3dL1iNwaGZl").getDocument(completion: {
+        docRef.document("recipe/\(id)").getDocument(completion: {
             (document,error) in
             if error != nil{
                 print(error!.localizedDescription)
@@ -23,7 +23,10 @@ class NetworkController{
             
             if let document = document,document.exists,let myData = document.data(){
                 
+                
+                
                 let recipeName = myData["recipeName"] as? String ?? ""
+                let recipeImage = myData["recipeImage"] as? String ?? ""
                 let recipeServings = myData["servings"] as? Int ?? 1
                 let recipeTime = myData["time"] as? Int ?? 1
                 let recipeTags = myData["tags"] as? [String] ?? []
@@ -36,37 +39,44 @@ class NetworkController{
                 var recipeIngredients = [Ingredient]()
                 
                 for step in recipeStepsArray{
-                    guard let stepText = step["text"] else { return }
-                    
-                    guard let stepImageURL = step["imageURL"] else { recipeSteps.append(Step(text: stepText))
+                    guard let stepText = step["text"] else {
                         return
                     }
-                    
+
+                    guard let stepImageURL = step["imageURL"] else {
+                        recipeSteps.append(Step(text: stepText))
+                        return
+                    }
+
                     recipeSteps.append(Step(text: stepText, imageURL: stepImageURL))
                 }
-                
+
                 for ingredient in recipeIngredientsArray{
-                    guard let name = ingredient["name"],let quantity = ingredient["quantity"]  else { return }
-                    
+                    guard let name = ingredient["name"],let quantity = ingredient["quantity"]  else {
+                        return
+
+                    }
+
                     recipeIngredients.append(Ingredient(name: name, quantity: quantity))
                 }
+//
+//
                 
-               
-                
-                var recipe = Recipe(recipeName: "Pancakes", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "avatar", tags: ["Quick Fix"], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: "",recipeID:"bkncknkfndkfndkfndkf",curatorName:"Chef Chi",favoriteCount: 10)
+                var recipe = Recipe(recipeName: "Pancakes", recipeImage: "https://techcrunch.com/wp-content/uploads/2019/03/Team-Mobot.png", curatorImage: "avatar", tags: ["Quick Fix"], steps: [Step(text: "")], ingredients: Ingredient.loadIngredients(), servings: 30, time: 30, curatorID: "",recipeID:document.documentID,curatorName:"Chef Chi",favoriteCount: 10)
 
                 recipe.recipeName = recipeName
                 recipe.servings = recipeServings
                 recipe.time = recipeTime
+                recipe.recipeImage = "https://firebasestorage.googleapis.com/v0/b/avenue-79575.appspot.com/o/Malawian%20Spiced%20Chicken%20Curry.jpg?alt=media&token=be88d507-6172-4679-be22-2c4e1f0f3a00"
                 recipe.tags = recipeTags
                 recipe.steps = recipeSteps
                 recipe.ingredients = recipeIngredients
                 recipe.curatorImage = recipeCurator
+
                 
-                
-                print(recipeSteps)
+                print(recipe)
                 completion(recipe)
-                //self.recipeTitleLabel.text = recipeName
+                
                 
             }
             else{

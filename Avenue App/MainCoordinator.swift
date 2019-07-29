@@ -61,9 +61,7 @@ class MainCoordinator:Coordinator{
         let vc = IngredientsViewController.instantiate(storyboardName: "List") as! IngredientsViewController
         vc.coordinator = self
         vc.recipeID = id
-        navigationController.pushViewController(vc, animated: true)
-        
-        
+        navigationController.pushViewController(vc, animated: true)   
         
     }
     

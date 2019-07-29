@@ -18,9 +18,6 @@ extension UIViewController {
 
 }
 
-
-
-
 extension String{
     var wrappedIntoStyle:String{
         let bounds:CGRect = UIScreen.main.bounds

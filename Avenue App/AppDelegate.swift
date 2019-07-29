@@ -56,10 +56,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate,UNUserNo
             
         }
         
-        InstantSearch.shared.configure(appID: "latency", apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db", index: "bestbuy_promo")
-        InstantSearch.shared.params.attributesToRetrieve = ["name", "salePrice"]
-        InstantSearch.shared.params.attributesToHighlight = ["name"]
+        InstantSearch.shared.configure(appID: "TZFZW4VOJM", apiKey: "7a698e1f93c0907c07c77393bc7ea759", index: "recipes_search")
+        InstantSearch.shared.params.attributesToRetrieve = ["recipeName", "time","recipeImage","curatorName"]
+        InstantSearch.shared.params.attributesToHighlight = ["recipeName"]
 
+        
         window?.rootViewController = firstVC
         window?.makeKeyAndVisible()
         return true
@@ -94,9 +95,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate,UNUserNo
     
     
     
-    
-    
-    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let err = error {
             print("Failed attempt to login to Google")
@@ -117,6 +115,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate,UNUserNo
             print("User is signed in")
             self.defaults.set(true, forKey: UDKey.LoggedIn.rawValue)
             
+            Analytics.logEvent(AnalyticsEventLogin, parameters: [
+                AnalyticsParameterMethod:"Google"
+                ])
+
             
             if self.window?.rootViewController is LogInViewController {
                 //do something if it's an instance of that class

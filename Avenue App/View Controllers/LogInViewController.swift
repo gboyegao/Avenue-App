@@ -62,6 +62,9 @@ class LogInViewController: UIViewController {
             }
             self.defaults.set(true, forKey: UDKey.LoggedIn.rawValue)
             self.performSegue(withIdentifier: "loginToHome", sender: self)
+            Analytics.logEvent(AnalyticsEventLogin, parameters: [
+                AnalyticsParameterMethod:"Email"
+                ])
             
         })
     }

@@ -22,7 +22,7 @@ class PopularCollectionViewCell: UICollectionViewCell {
     
     func update(_ popular:Popular){
         recipeNameLabel.text = popular.recipeName
-        recipeTimeLabel.text = "\(popular.duration) min"
+        recipeTimeLabel.text = "\(popular.duration)"
         recipeImageView.image = UIImage(named: popular.recipeImage)
         
     }

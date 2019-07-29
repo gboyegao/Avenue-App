@@ -110,6 +110,11 @@ class RegisterViewController: UIViewController{
                     return
                 }
                 
+                Analytics.logEvent(AnalyticsEventSignUp, parameters: [
+                    AnalyticsParameterMethod:"Email"
+                    ])
+                
+                
                 guard let user = authResult?.user else { return }
                 let uid = user.uid
                 //Add User to Database change to firestore
@@ -121,6 +126,8 @@ class RegisterViewController: UIViewController{
                     //Use Snapshot
                     snapshot.value
                 }
+                    
+                    
                     
                     
                 )

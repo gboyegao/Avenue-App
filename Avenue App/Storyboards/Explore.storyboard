@@ -94,7 +94,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="recipeNameLabel" destination="4xC-Ej-i8v" id="wL0-Zo-mm3"/>
+                                            <outlet property="curatorNameLabel" destination="4xC-Ej-i8v" id="wL0-Zo-mm3"/>
+                                            <outlet property="recipeImageView" destination="qhQ-kE-Ne4" id="qV6-Hx-wUX"/>
+                                            <outlet property="recipeNameLabel" destination="R4r-kb-qN0" id="svA-yu-w64"/>
+                                            <outlet property="timeLabel" destination="0ou-sk-CYz" id="xBo-Ag-rIU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

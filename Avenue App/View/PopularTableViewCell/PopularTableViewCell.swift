@@ -13,6 +13,7 @@ class PopularTableViewCell: UITableViewCell {
     
     @IBOutlet weak var popularCollectionView: UICollectionView!
     weak var delegate:CollectionViewDelegate?
+    var popular:[Popular]!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,15 +38,14 @@ class PopularTableViewCell: UITableViewCell {
 
 extension PopularTableViewCell:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return delegate!.popular.count
+        return popular.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "popularSectionCell", for: indexPath as  IndexPath) as! PopularCollectionViewCell
+
+                cell.update(popular[indexPath.row])
         
-        if let popular = delegate?.popular[indexPath.row]{
-                cell.update(popular)
-        }
         return cell
     }
 }
@@ -53,7 +53,8 @@ extension PopularTableViewCell:UICollectionViewDataSource{
 
 extension PopularTableViewCell:UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let popularRecipe = delegate?.popular[indexPath.row] else { return }
+        let popularRecipe = popular[indexPath.row]
+        
         delegate?.cellClicked(cell:self,name: popularRecipe.recipeName,imageURL: popularRecipe.recipeImage)
     }
     

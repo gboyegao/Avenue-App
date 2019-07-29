@@ -80,6 +80,7 @@
 		5F8E8C522220A4C2002838B4 /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8E8C512220A4C2002838B4 /* FollowingTableViewCell.swift */; };
 		5F938A7021A221D00019C622 /* PopularTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F938A6E21A221D00019C622 /* PopularTableViewCell.swift */; };
 		5F938A7121A221D00019C622 /* PopularTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F938A6F21A221D00019C622 /* PopularTableViewCell.xib */; };
+		5F9FA602229E54CC00DFA680 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9FA601229E54CC00DFA680 /* Screen.swift */; };
 		5FA17CF1221AD5B900405986 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA17CF0221AD5B900405986 /* ListViewController.swift */; };
 		5FA17CF3221AD86800405986 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA17CF2221AD86800405986 /* ProfileViewController.swift */; };
 		5FA17CF5221B334900405986 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA17CF4221B334900405986 /* Keys.swift */; };
@@ -209,6 +210,7 @@
 		5F8E8C512220A4C2002838B4 /* FollowingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableViewCell.swift; sourceTree = "<group>"; };
 		5F938A6E21A221D00019C622 /* PopularTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularTableViewCell.swift; sourceTree = "<group>"; };
 		5F938A6F21A221D00019C622 /* PopularTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularTableViewCell.xib; sourceTree = "<group>"; };
+		5F9FA601229E54CC00DFA680 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		5FA17CF0221AD5B900405986 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		5FA17CF2221AD86800405986 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5FA17CF4221B334900405986 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 				5F0F5F46225CC908003E4708 /* CuratorRecipe.swift */,
 				5F0F5F4C225CCFD0003E4708 /* Curator.swift */,
 				5F38E9D1226203AE00458A20 /* BlogContent.swift */,
+				5F9FA601229E54CC00DFA680 /* Screen.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -915,6 +918,7 @@
 				5F65E6EF21EDEA1400EA7E0E /* PasswordValidator.swift in Sources */,
 				5F742D4F222D85F200F00520 /* RecipeSlideViewController.swift in Sources */,
 				5F51AF2022549B9A002BD163 /* KeyboardService.swift in Sources */,
+				5F9FA602229E54CC00DFA680 /* Screen.swift in Sources */,
 				5F38E9D92264D9FD00458A20 /* ImageContentTableViewCell.swift in Sources */,
 				5F742D58222FD25200F00520 /* CuratorViewController.swift in Sources */,
 				5F416C0322200535001EA396 /* DirectionsDataSource.swift in Sources */,

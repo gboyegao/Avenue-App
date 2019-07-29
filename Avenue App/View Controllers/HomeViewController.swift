@@ -18,6 +18,8 @@ class HomeViewController: UITableViewController,CollectionViewDelegate{
     var window:UIWindow?
     
     
+    var screen: Screen!
+    
     var trending:[Trending] = Trending.loadTrendingData()
     var popular: [Popular] = Popular.loadPopularData()
     var discover: [Discover] = Discover.loadDiscoverData()
@@ -45,9 +47,21 @@ class HomeViewController: UITableViewController,CollectionViewDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
           navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let url = URL(string: "http://localhost:8090/home.json")!
+        let data = try! Data(contentsOf: url)
+        
+        let decoder = JSONDecoder()
+        
+        screen = try! decoder.decode(Screen.self, from: data)
+        
+        
+        
         
         let content = UNMutableNotificationContent()
         content.title = "Blah Blah"
@@ -79,21 +93,27 @@ class HomeViewController: UITableViewController,CollectionViewDelegate{
         
         guard let window = window else { return 10.0}
         
+
         
+// var heights:[CGFloat] = [trendingCellHeight,popularCellHeight,discoverCellHeight,blogCellHeight]
         
-        var trendingCellHeight = window.frame.height * 0.345
-        var popularCellHeight = window.frame.height * 0.263
-        var discoverCellHeight = window.frame.height * 0.158
-        var blogCellHeight = window.frame.height * 0.3
+        let row = screen.rows[indexPath.row]
         
-        
-        
-//        var heights:[CGFloat] = [trendingCellHeight,popularCellHeight,discoverCellHeight,blogCellHeight]
-        
-        var heights:[CGFloat] = [280,213,128,237,283]
-        
-        return heights[indexPath.row];
+        switch row.rowType{
+        case "carousel:trending":
+            return 280
+        case "card:recent":
+            return 213
+        case "imagecard:discover":
+            return 128
+        case "article:blog":
+            return 237
+        default:
+            fatalError("Couldnt create cell")
+            
+        }
     }
+
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -101,28 +121,58 @@ class HomeViewController: UITableViewController,CollectionViewDelegate{
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 4
+        return screen.rows.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //        let todayCell = tableView.dequeueReusableCell(withIdentifier: "todayPlannerTableViewCell", for: indexPath) as! TodayPlannerTableViewCell
-        let todayCell = tableView.dequeueReusableCell(withIdentifier: "todayPlannerTableViewCell") as! TodayPlannerTableViewCell
-            todayCell.delegate = self
         
-        let popularCell = tableView.dequeueReusableCell(withIdentifier: "popularTableViewCell") as!  PopularTableViewCell
-            popularCell.delegate = self
+        let row = screen.rows[indexPath.row]
         
-        let discoverCell = tableView.dequeueReusableCell(withIdentifier: "discoverTableViewCell") as!  DiscoverTableViewCell
-            discoverCell.delegate = self
-        let blogCell = tableView.dequeueReusableCell(withIdentifier: "blogTableViewCell") as!  BlogTableViewCell
-            blogCell.delegate = self
-        let cells: [UITableViewCell] = [todayCell,popularCell,discoverCell,blogCell]
-        //
-        // Configure the cell...
-        cells[indexPath.row].selectionStyle = UITableViewCell.SelectionStyle.none
-        return cells[indexPath.row]
+        switch row.rowType{
+            case "carousel:trending":
+                let todayCell = tableView.dequeueReusableCell(withIdentifier: "todayPlannerTableViewCell") as! TodayPlannerTableViewCell
+                todayCell.delegate = self
+                todayCell.trending =  row.data.map{ data in
+                        Trending(recipeName: data.title , recipeImage: data.background!, curatorImage: data.avatar!, tags: [Tag(tagName:"breakfast"),Tag(tagName:"easyfix")])
+                }
+                todayCell.selectionStyle = UITableViewCell.SelectionStyle.none
+                return todayCell
+            case "card:recent":
+                let popularCell = tableView.dequeueReusableCell(withIdentifier: "popularTableViewCell") as!  PopularTableViewCell
+                popularCell.delegate = self
+                popularCell.popular = row.data.map{ data in
+                    Popular(recipeName: data.title, recipeImage: data.background!, duration: data.subtitle!, curatorImage: data.avatar!, favorites: data.likes!)
+                }
+                
+                popularCell.selectionStyle = UITableViewCell.SelectionStyle.none
+
+                return popularCell
+            case "imagecard:discover":
+                let discoverCell = tableView.dequeueReusableCell(withIdentifier: "discoverTableViewCell") as!  DiscoverTableViewCell
+                discoverCell.delegate = self
+                discoverCell.discover = row.data.map{ data in
+                      Discover(curatorName: data.title, curatorImage: data.avatar!)
+            }
+                discoverCell.selectionStyle = UITableViewCell.SelectionStyle.none
+
+            return discoverCell
+
+            case "article:blog":
+            
+                let blogCell = tableView.dequeueReusableCell(withIdentifier: "blogTableViewCell") as!  BlogTableViewCell
+                blogCell.delegate = self
+                blogCell.articles =  row.data.map{ data in
+                        Article(articleName: data.title, articleImage: data.background!)
+                }
+                blogCell.selectionStyle = UITableViewCell.SelectionStyle.none
+            return blogCell
+        default:
+                fatalError("Couldnt create cell")
+            //Implement the cell catching ui that hides rowtypes not supported in app 
+            
+        }
     }
     
     @IBAction func unwindToHome(segue:UIStoryboardSegue) {

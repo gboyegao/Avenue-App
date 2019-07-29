@@ -20,7 +20,7 @@ class PasswordValidator:NSObject{
     func validate(password:String) throws -> Bool {
         
             //Validate Length should be between 6 and 10 characters in length
-            if (password.count < 6 || password.count > 10) {
+            if (password.count < 6) {
                 throw PasswordError.lengthError
             }
         

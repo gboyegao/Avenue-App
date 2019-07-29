@@ -11,6 +11,7 @@ import UIKit
 class DiscoverTableViewCell: UITableViewCell {
 
     var delegate:CollectionViewDelegate?
+    var discover:[Discover]!
     
     @IBOutlet weak var discoverCollectionView: UICollectionView!
     override func awakeFromNib() {
@@ -31,7 +32,8 @@ class DiscoverTableViewCell: UITableViewCell {
 
 extension DiscoverTableViewCell:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-return 3
+        
+        return discover.count
         
     }
     
@@ -47,7 +49,8 @@ return 3
 
 extension DiscoverTableViewCell:UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let  discoverRecipe = delegate?.discover[indexPath.row] else { return }
+         let  discoverRecipe = discover[indexPath.row]
+        
             delegate?.cellClicked(cell: self, name: discoverRecipe.curatorName, imageURL: discoverRecipe.curatorImage)
 
     }

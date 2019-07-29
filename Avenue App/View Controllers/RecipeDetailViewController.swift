@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFunctions
 
 class RecipeDetailViewController: UIViewController {
     
@@ -37,6 +38,8 @@ class RecipeDetailViewController: UIViewController {
     
     var recipeName:String!
     var recipeImage:String!
+    
+    lazy var functions = Functions.functions()
 
     
     private enum SourceType: Int {
@@ -91,7 +94,7 @@ class RecipeDetailViewController: UIViewController {
         
         setUpVC()
         
-        NetworkController.getRecipe{
+        NetworkController.getRecipe(id:"newRecipe"){
             recipe in
             self.setUpVC(recipe: recipe)
             self.recipe = recipe
@@ -203,6 +206,21 @@ class RecipeDetailViewController: UIViewController {
         
         favoriteButton.isSelected = FavoriteController.faveExistsInDB(id: recipe.recipeID)
         
+        //Set Up OnRead Event
+        
+        Analytics.logEvent("onRead", parameters: [
+            "recipeID": recipe.recipeID
+            ])
+        
+        functions.httpsCallable("indexTrendingOnRead").call(["recipeID":recipe.recipeID]) { (result, error) in
+            if let error = error as NSError? {
+                if error.domain == FunctionsErrorDomain {
+                    let code = FunctionsErrorCode(rawValue: error.code)
+                    let message = error.localizedDescription
+                    let details = error.userInfo[FunctionsErrorDetailsKey]
+                }
+            }
+        }
         
 
         //Load Steps

@@ -14,6 +14,8 @@ class TodayPlannerTableViewCell: UITableViewCell{
     var viewWidth:CGFloat!
     
 //    var docRef:DocumentReference!
+    var trending:[Trending]!
+    
     weak var delegate:CollectionViewDelegate?
 
     @IBOutlet weak var todayCollectionView: UICollectionView!
@@ -41,7 +43,7 @@ class TodayPlannerTableViewCell: UITableViewCell{
 extension TodayPlannerTableViewCell:UICollectionViewDataSource{
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return delegate!.trending.count
+        return trending.count
         
     }
     
@@ -57,8 +59,8 @@ extension TodayPlannerTableViewCell:UICollectionViewDataSource{
             cell.trendingLabel.text = ""
         }
         
-        if let trending = delegate?.trending[indexPath.row]{
-            cell.title.text = trending.recipeName
+        
+            cell.title.text = trending[indexPath.row].recipeName
             let imageURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/avenue-79575.appspot.com/o/chicken-burger.png?alt=media&token=2b8e79e8-2e5f-4133-b42d-b37e2a1a0c90")!
             
             ImageService.getImage(withURL: imageURL){
@@ -70,7 +72,7 @@ extension TodayPlannerTableViewCell:UICollectionViewDataSource{
             
           //  cell.recipeImageView.image = UIImage(named: trending.recipeImage)
             
-        }
+        
         return cell
     }
     
@@ -81,7 +83,7 @@ extension TodayPlannerTableViewCell:UICollectionViewDataSource{
 extension TodayPlannerTableViewCell:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let trendingRecipe = delegate?.trending[indexPath.row] else { return }
+        let trendingRecipe = trending[indexPath.row]
         delegate?.cellClicked(cell:self,name: trendingRecipe.recipeName, imageURL: trendingRecipe.recipeImage)
     }
 //
